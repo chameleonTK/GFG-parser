@@ -45,7 +45,7 @@ class Earley:
 		for g in self.grammar:
 			if g["l"]=="ROOT":
 				#tuple (grammar,dot,start)
-				s = State((g,0,0),None)
+				s = State((g,0,0))
 				self.chart[0].append(s)
 
 		print "Initial"
@@ -96,7 +96,7 @@ class Earley:
 		#print "predict"
 		for g in self.grammar:
 			if state.next() == g["l"]:
-				s = State((g,0,j),state)
+				s = State((g,0,j))
 
 				if self.repeat_chart(j,s):
 					continue
@@ -111,7 +111,7 @@ class Earley:
 
 		if state.next() == self.lexical[self.txt[j]]:
 			g = {"l":state.next(),"r":[self.txt[j]]}
-			s = State((g,1,j),state)
+			s = State((g,1,j))
 			if self.repeat_chart(j+1,s):
 				return False
 
@@ -121,14 +121,17 @@ class Earley:
 
 	def completer(self,state,j):
 
-		#print "completer"
+		print "completer"
+		print state
+
 		for st in self.chart[state.start]:
 			if st.next() == state.rule["l"]:
-				s = State((st.rule,st.dot+1,st.start),state)
+				print "next",st
+				s = State((st.rule,st.dot+1,st.start))
 				#print s , state
 				#print "\t",s,s.start,j
 				self.chart[j].append(s)
-
+				print "add",s
 				#if s.rule["l"]=="ROOT" and (not s.incomplete()) and j == len(self.txt):
 				#	return True
 
