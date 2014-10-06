@@ -1,52 +1,23 @@
 # -*- coding: utf-8 -*-
 
-from earley import Earley
+class Parser:
 
-class Parser():
 	def __init__(self,grammar,lexical):
 		self.grammar = grammar
-		self.lexcical = lexical
-		self.algor = Earley(grammar,lexical)
+		self.lexical = lexical
 
-	def recognize(self,txt):
-		return self.algor.recognize(txt)
-		
-	
-
-
-G1 = [
-		{"l":"ROOT","r":["E"]},
-		{"l":"E","r":["E","op","E"]},
-		{"l":"E","r":["n"]},
-	]
-
-
-G2 = [
-		{"l":"ROOT","r":["E"]},
-		{"l":"E","r":["E","op","E"]},
-		{"l":"E","r":["leftpar","E","rightpar"]},
-		{"l":"E","r":["n"]},
-	]
-
-L = {
-		"1":"n",
-		"2":"n",
-		"3":"n",
-		"4":"n",
-		"5":"n",
-		"6":"n",
-		"7":"n",
-		"8":"n",
-		"9":"n",
-		"(":"leftpar",
-		")":"rightpar",
-		"+":"op",
-		"-":"op",
-	}
-
-
-p  = Parser(G1,L)
-
-
-st = raw_input()
-p.recognize(st.split(" "))
+	def parse(self):
+		print "PARSE"
+		tree = []
+		for state in self.chart[len(self.txt)]:
+			if state.rule["l"] =="ROOT" and state.start == 0 and (not state.incomplete()):
+				tree.append(state)
+		print tree
+		'''
+		for root in tree:
+			print " === Tree ==="
+			tmp_root = root
+			while tmp_root is not None:
+				print tmp_root,tmp_root.start
+				tmp_root = tmp_root.parent
+		'''
