@@ -1,8 +1,10 @@
 class State:
-	def __init__(self,state):
+	def __init__(self,state,parent=None,complete=None):
 		self.rule = state[0]
 		self.dot = state[1]
 		self.start = state[2]
+		self.parent = parent
+		self.complete = complete
 	
 	def is_complete(self):
 		return self.dot==len(self.rule["r"])
@@ -38,9 +40,10 @@ class State:
 
 
 class Chart:
-	def __init__(self, states , j =0):
+	def __init__(self, states , j =0 ,debug = False):
 		self.states = states
 		self.index = j
+		self.debug = debug
 
 	def __str__(self):
 		return str(self.states[0])
@@ -48,6 +51,14 @@ class Chart:
 	def add_state(self, state):
 		if not state in self.states:
 			self.states.append(state)
-			print "\t",state,self.index
-		else:
-			print "BOO",state.start
+			if self.debug:
+				print "\t",state,self.index
+		#else:
+		#	print "BOO",state.start
+
+	def completeness(self):
+		complete = []
+		for state in self.states:
+			if state.is_complete():
+				complete.append(state)
+		return complete

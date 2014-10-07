@@ -1,15 +1,24 @@
 # -*- coding: utf-8 -*-
 
 from recognizer import Recognizer
+from parser import Parser
+
 
 class Earley():
 	def __init__(self,grammar,lexical):
 		self.grammar = grammar
 		self.lexcical = lexical
-		self.algor = Recognizer(grammar,lexical)
+		self.recg = Recognizer(grammar,lexical)
+		self.pars = Parser(grammar,lexical)
+
+		self.charts = None
 
 	def recognize(self,txt):
-		return self.algor.recognize(txt)
+		self.charts = self.recg.recognize(txt)
+		return self.charts
+
+	def parse(self,charts):
+		return self.pars.parse(charts)
 		
 	
 
@@ -21,6 +30,13 @@ G9 = [
 		{"l":"C","r":["op"]},
 	]
 
+
+G5 = [
+		{"l":"ROOT","r":["E"]},
+		{"l":"E","r":["E","mul","E"]},
+		{"l":"E","r":["E","plus","E"]},
+		{"l":"E","r":["n"]},
+	]
 
 G1 = [
 		{"l":"ROOT","r":["E"]},
@@ -48,13 +64,17 @@ L = {
 		"9":"n",
 		"(":"leftpar",
 		")":"rightpar",
-		"+":"op",
-		"-":"op",
+		"+":"plus",
+		"-":"minus",
+		"*":"mul",
 	}
 
 
-p  = Earley(G9,L)
+p  = Earley(G5,L)
 
 
 st = raw_input()
-p.recognize(st.split(" "))
+charts = p.recognize(st.split(" "))
+AST = p.parse(charts);
+
+#print AST[0]
