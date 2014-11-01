@@ -5,6 +5,10 @@ class State:
 		self.start = state[2]
 		self.parent = parent
 		self.complete = complete
+		self.end = None
+
+	def set_end(self,end):
+		self.end = end
 	
 	def is_complete(self):
 		return self.dot==len(self.rule["r"])
@@ -33,9 +37,9 @@ class State:
 			s += self.rule["r"][i]+" "
 
 		if self.dot== len(self.rule["r"]):
-			s += ". \t\t" + str(self.start)
+			s += ". \t\t"+ str(self.start) +" "+ str(self.end)
 		else:
-			s += "\t\t" + str(self.start)
+			s += "\t\t"+ str(self.start) + " "+str(self.end)
 		return s
 
 
@@ -50,9 +54,11 @@ class Chart:
 
 	def add_state(self, state):
 		if not state in self.states:
+
+			state.set_end(self.index)
 			self.states.append(state)
 			if self.debug:
-				print "\t",state,self.index
+				print "\t",state
 		#else:
 		#	print "BOO",state.start
 

@@ -1,35 +1,6 @@
 # -*- coding: utf-8 -*-
-
-class Node:
-	def __init__(self, body, children):
-		self.body = body
-		self.children = children
-
-
-	def print_(self,tab):
-		i=0
-		s=""
-		while i< tab:
-			s+="  "
-			i+=1
-		return s+self.body
-
-	def tranverse(self,tab):
-		s = self.print_(tab)
-		for child in self.children:
-			s += " [ "+child.body+"]"
-		s+='\n'
-
-		for child in self.children:
-			s += child.tranverse(tab+1)
-		return s
-
-	def __str__(self):
-		return self.tranverse(0)
-
-	def is_leaf(self):
-		return len(self.children) == 0
-
+import copy
+from tree import *
 
 class Parser:
 	def __init__(self,grammar,lexical):
@@ -44,12 +15,11 @@ class Parser:
 
 
 	def get_root(self):
-		root = []
-		for state in self.complete[-1]:
+
+		for i,state in enumerate(self.complete[-1]):
 			if state.rule["l"] =="ROOT" and state.start == 0 and state.is_complete():
-				root.append(state)
-		print root
-		return root
+				return (i,state)
+		return None
 
 	def parse(self,charts):
 
@@ -58,11 +28,75 @@ class Parser:
 
 		self.root = self.get_root()
 
-		if len(self.root)==0:
+		if not self.root:
 			return None
 
+		
+
+		for i,chart in enumerate(self.complete):
+			print "------ LOOP",i,"-----"
+			for state in chart:
+				print state
+
+		print "\n"
+		parsetree = []
+		i,state = self.root
+		index = (state.end,i)
+		for tree in self.build_nodes(index):
+			PT = Tree(index,self.complete)
+			PT.merge(tree)
+			print "---- Tree ----"
+			print PT
+			parsetree.append(PT)
+
+		return parsetree
 
 
-	def build_nodes(self, root):
-		return "A"
+
+	def build_nodes(self,root_index):
+		x = root_index[0]
+		y = root_index[1]
+		root = self.complete[x][y]
+		parsetree = []
+
+		if not root.rule["l"].isupper():
+			return []
+
+		if len(root.rule['r']) == 1:
+			for i,node in enumerate(self.complete[root.end]):
+				if node.start == root.start and node.end == root.end:
+					if node != root and root.prev() == node.rule["l"]:
+
+						node_index = (root.end,i)
+						for t in self.build_nodes(node_index):
+							tree = Tree(root_index,self.complete)
+
+							tree.add_edge( (root_index,node_index))
+							tree.merge(t)
+							parsetree.append(tree)
+			
+		else:
+			#for rule in reversed(root.rule["r"]):
+			for i,node in enumerate(self.complete[root.end]):
+				if node.end == root.end and node != root and root.prev() == node.rule["l"]:
+					
+					node_index = (root.end,i)
+					for t in self.build_nodes(node_index):
+						tree = Tree(root_index,self.complete)
+
+						tree.add_edge( (root_index,node_index))
+						tree.merge(t)
+
+						parsetree.append(tree)
+			
+			#for tree in parsetree:
+			#	end = tree.end
+
+					
+						
+		#print root.prev()
+		
+		return parsetree
+
+
 
