@@ -8,8 +8,15 @@ class Production:
 		self.left = l
 		self.right = r
 
+	def isEpsilon(self):
+		if len(self.right)==1 and self.right[0]=="EPSILON":
+			return True
+		return False
+	
+	
 	def __str__(self):
 		return self.left+" -> "+" ".join(self.right)
+
 
 
 class ContextFree:
@@ -21,7 +28,7 @@ class ContextFree:
 		self.terminal = set()
 		
 		self.production = []
-		self.start_sym = None
+		self.start = None
 	
 		for line in fin:
 			l,r = line.split("->")
@@ -29,7 +36,7 @@ class ContextFree:
 			l = l.strip()
 			self.nonterminal.add(l)
 			if l == "root":
-				self.start_sym = "root"
+				self.start = "root"
 
 
 			for rule in r.split("|"):
@@ -52,13 +59,15 @@ class ContextFree:
 			s+= str(rule)+"\n"
 		return s
 
-	def isTerminal(self,s):
+	@staticmethod
+	def isTerminal(s):
 		return s.isupper()
 
-	def isNonTerminal(self,s):
+	@staticmethod
+	def isNonTerminal(s):
 		return (not s.isupper())
 
-	
-	def isToken(self,lex,st):
+	@staticmethod
+	def isToken(lex,st):
 		return (self.lexicon[lex].match(st) is not None)
 
