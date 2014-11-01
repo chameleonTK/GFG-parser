@@ -1,0 +1,24 @@
+Release Checklist
+=================
+
+* Update CHANGES.txt
+
+* Ensure all tests pass
+
+* cd Demos; make test
+
+* make test_setup
+
+* Check version number in Makefile
+
+* Update news in web page
+
+* Commit changes
+
+* Tag release
+
+* cd ..; make tar
+
+* make upload
+
+* make push
