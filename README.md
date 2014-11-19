@@ -1,5 +1,3 @@
-
-
 # Compiler-compiler #
 
 We implement this parser generator based on "Parsing with Picture" , Keshav Pingali and Gianfranco Bilardi
@@ -94,10 +92,12 @@ return `True` if self is epsilon production
 
 ### [#] self.node ###
 return dictionary `[key =>  [Node label] ]` `[value = Node object of It''s label ]`
+
 \* Node label : str(Node object)
 
 ### [#] self.edge ###
 return dictionary of dictionary `[key => [Node label][Node label] ]` `[value = Edge object ]`
+
 \* Node label : str(Node object)
 
 ### [#] self.addEdge(edge) ###
@@ -113,6 +113,7 @@ return add `Edge object` to `self.edge`
 ### [#] Node(ele , dot ) ###
 
 **ele** : may be `Production object` or `non-terminal symbol`
+
 **dot** : progress of production if `ele` is non-terminal, dot should be `0` or `1` (int)
 
 ### [#] self.ele ###
@@ -122,13 +123,17 @@ return ele of Node ,, It's smt that node represent.
 return dot (int)
 
 ### [#] self.type ###
-return list of node type \* some node can be many type.
+return list of node type 
+
+\* some node can be many type.
 
 ### [#] self.isType(tp) ###
 return `True` if self is type `tp`
 
 ### [#] Node.label(ele,dot) ###
-return label of ele (string) \* use as key of dictionary in `GrammarFlow obj`
+return label of ele (string) 
+
+\* use as key of dictionary in `GrammarFlow obj`
 
 
 * * *
@@ -138,7 +143,9 @@ return label of ele (string) \* use as key of dictionary in `GrammarFlow obj`
 ### [#] Edge(nodeA , NodeB, label=None ) ###
 
 **nodeA** : `Node obj` that is start point
+
 **NodeB** : `Node obj` that is end point
+
 **label (optional)** : label of edge (string)
 
 ### [#] self.start , self.end ###
@@ -148,5 +155,3 @@ return `Node obj`
 return label (string)
 
 * * *
-
-
