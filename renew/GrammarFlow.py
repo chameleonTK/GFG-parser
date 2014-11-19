@@ -125,9 +125,3 @@ class GrammarFlow:
 					s+= " >>>> "+str(self.edge[focus][k]) +"\n"
 			s+="\n"
 		return s
-
-
-G = ContextFree("example/grammar","example/lexicon")	
-print " ----- "
-GFG = GrammarFlow(G)
-print GFG
