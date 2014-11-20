@@ -53,7 +53,7 @@ return list of `Production object`
 return "root" if `grammar` file has `root` production
 
 ### [#] self.lexicon ###
-return dictionary `[key =  terminal symbol]` `[value = Re object]`
+return dictionary `[key => [terminal symbol]]` `[value = Re object]`
 
 ### [#] ContextFree.isTerminal( s ) ###
 return `True` if s is terminal format ( we defined s is terminal when s is UpperChar )
@@ -85,3 +85,68 @@ return list of terminal in right
 return `True` if self is epsilon production
 
 * * *
+
+## GrammarFlow Object ##
+
+### [#] GrammarFlow( grammar ) ###
+
+**grammar** : ContextFree object
+
+### [#] self.node ###
+return dictionary `[key =>  [Node label] ]` `[value = Node object of It''s label ]`
+\* Node label : str(Node object)
+
+### [#] self.edge ###
+return dictionary of dictionary `[key => [Node label][Node label] ]` `[value = Edge object ]`
+\* Node label : str(Node object)
+
+### [#] self.addEdge(edge) ###
+return add `Edge object` to `self.edge`
+
+
+\* Not implement to support epsilon production 
+
+* * *
+
+## Node Object ##
+
+### [#] Node(ele , dot ) ###
+
+**ele** : may be `Production object` or `non-terminal symbol`
+**dot** : progress of production if `ele` is non-terminal, dot should be `0` or `1` (int)
+
+### [#] self.ele ###
+return ele of Node ,, It's smt that node represent.
+
+### [#] self.dot ###
+return dot (int)
+
+### [#] self.type ###
+return list of node type \* some node can be many type.
+
+### [#] self.isType(tp) ###
+return `True` if self is type `tp`
+
+### [#] Node.label(ele,dot) ###
+return label of ele (string) \* use as key of dictionary in `GrammarFlow obj`
+
+
+* * *
+
+## Edge Object ##
+
+### [#] Edge(nodeA , NodeB, label=None ) ###
+
+**nodeA** : `Node obj` that is start point
+**NodeB** : `Node obj` that is end point
+**label (optional)** : label of edge (string)
+
+### [#] self.start , self.end ###
+return `Node obj`
+
+### [#] self.lebel ###
+return label (string)
+
+* * *
+
+
