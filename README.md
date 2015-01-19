@@ -10,6 +10,13 @@ It's modify of the Earley's algorithm that easier to understand. we use Grammar 
 GFG is tool that can reformulated parsing problem to the problem of finding certain kinds of path in graph.
 
 
+# TODO #
+* debug mode
+* recognizer & parser
+* epsilon production??
+* setting type of node in GFG
+* testing 
+
 # Update #
 * renew , by using GFG
 * implement simply original earley recoginzer
