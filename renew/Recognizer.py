@@ -11,13 +11,13 @@ class Recognizer():
 		i=0
 		self.init(token)
 		
-		while i < len(self.chart):
+		while i < len(self.charts):
 			if self.debug:
 				print " =========",i,"========== "
 
-			for state in self.chart[i].states:
+			for state in self.charts[i].states:
 				if self.debug:
-					print "\t",state,"[",state.start,"]"
+					print "\t",state
 
 				if state.is_scanner():
 					self.scanner(state,i)
@@ -30,24 +30,24 @@ class Recognizer():
 
 		fin = State(self.GFG.final,0)
 		self.fin = None
-		for state in self.chart[len(self.chart)-1].states:
+		for state in self.charts[len(self.charts)-1].states:
 			if fin == state:
 				self.fin = state
 
 		if self.fin is None:
 			raise Exception("The input is not in this grammar")
 
-		return self.chart
+		return self.charts
 
 	def  init(self,token):
 		self.token = token
-		self.chart=[Chart(n,self.debug) for n in range(len(self.token)+1)]
+		self.charts=[Chart(n,self.debug) for n in range(len(self.token)+1)]
 
 		if self.debug:
 			print "Initial"
 
 		s = State(self.GFG.start ,0)
-		self.chart[0].add_state(s)
+		self.charts[0].add_state(s)
 				
 				
 
@@ -56,7 +56,7 @@ class Recognizer():
 		for next in self.GFG.edge[str(state.rule)]:
 			node = self.GFG.edge[str(state.rule)][next].end
 			s = State(node,j)
-			self.chart[j].add_state(s)
+			self.charts[j].add_state(s)
 
 	
 	def scanner(self,state,j):
@@ -67,14 +67,14 @@ class Recognizer():
 			for next in self.GFG.edge[str(state.rule)]:
 				node = self.GFG.edge[str(state.rule)][next].end
 				s = State(node,state.start)
-				self.chart[j+1].add_state(s)
+				self.charts[j+1].add_state(s)
 			
 	
 	def completer(self,state,j):
 
 		if state.rule.isType("end"):
 
-			for st in self.chart[state.start].states:
+			for st in self.charts[state.start].states:
 				if not st.rule.isType("pro"):
 					continue
 				
@@ -85,13 +85,13 @@ class Recognizer():
 						if node.ele == st.rule.ele and node.dot == st.rule.dot+1 :
 
 							s = State(node,st.start)
-							self.chart[j].add_state(s)
+							self.charts[j].add_state(s)
 				
 		else:
 			for next in self.GFG.edge[str(state.rule)]:
 				node = self.GFG.edge[str(state.rule)][next].end
 				s = State(node,state.start)
-				self.chart[j].add_state(s)
+				self.charts[j].add_state(s)
 
 		
 		#return False

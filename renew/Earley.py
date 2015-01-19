@@ -7,8 +7,8 @@ from Recognizer import Recognizer
 class Earley():
 	def __init__(self,GFG):
 		self.grammar = GFG.grammar
-		self.recg = Recognizer(GFG,True)
-		self.pars = Parser(GFG)
+		self.recg = Recognizer(GFG)
+		self.pars = Parser(GFG,True)
 
 	def recognize(self,token):
 		return self.recg.recognize(token)
@@ -24,13 +24,10 @@ GFG = GrammarFlow(G)
 E  = Earley(GFG)
 
 
-st = "( 1 + 2 )" #raw_input()
+st = "( ( 1 + 2 ) + 3 )"  #raw_input()
 print "Enter your code : ",st
 
 charts = E.recognize(st.split(" "))
-
-#for ch in charts:
-#	print ch
 
 AST = E.parse(charts);
 

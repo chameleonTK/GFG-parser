@@ -14,6 +14,8 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 * epsilon production??
 * setting type of node in GFG
 * testing 
+* cannot parser multiple tree
+
 
 # Update #
 * renew , by using GFG

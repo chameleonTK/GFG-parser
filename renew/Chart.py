@@ -5,6 +5,7 @@ class State:
 		self.rule = rule
 		self.start = start
 		self.next = self.rule.next()
+		self.prev = self.rule.prev()
 	
 	def is_predictor(self):
 		return not( self.is_scanner() or self.is_completer() )
@@ -20,9 +21,8 @@ class State:
 			return 0
 		return -1
 
-
 	def __str__(self):
-		return str(self.rule)
+		return str(self.rule)+"["+str(self.start)+"]"
 
 
 class Chart:
@@ -34,7 +34,7 @@ class Chart:
 	def __str__(self):
 		s = " ========= "+str(self.index)+" ========== \n"
 		for state in self.states:
-			s+= "\t"+str(state)+"["+str(state.start)+"]\n"
+			s+= "\t"+str(state)+"\n"
 		return s
 
 	def add_state(self, state):
@@ -46,3 +46,4 @@ class Chart:
 		#	print "BOO",state.start
 
 	
+

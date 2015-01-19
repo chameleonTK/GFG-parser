@@ -27,6 +27,18 @@ class Node:
 			else:
 				return None
 
+	def prev(self):
+		if isinstance(self.ele,Production):
+			if self.dot >= 1:
+				return self.ele.right[self.dot-1]
+			else:
+				return None
+
+		else:
+			if self.dot == 1:
+				return self.ele
+			else:
+				return None
 
 
 	def isType(self,tp):
@@ -51,7 +63,7 @@ class Node:
 				s+= ele.right[i]+" "
 
 			if len(ele.right)==dot:
-				s+="."
+				s+=". "
 			return s
 
 		else:
