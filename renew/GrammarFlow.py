@@ -5,7 +5,8 @@ class Node:
 	def __init__(self,ele,dot):
 		self.ele = ele
 		self.dot = dot
-		if ele is Production:
+
+		if isinstance(self.ele,Production):
 			self.type = ["pro"]
 		else:
 			if self.dot == 0:
@@ -13,11 +14,31 @@ class Node:
 			else:
 				self.type = ["end"]
 
+	def next(self):
+		if isinstance(self.ele,Production):
+			if self.dot < len(self.ele.right):
+				return self.ele.right[self.dot]
+			else:
+				return None
+
+		else:
+			if self.dot == 0:
+				return self.ele
+			else:
+				return None
+
+
+
 	def isType(self,tp):
 		return (tp in self.type)
 		
 	def __str__(self):
 		return Node.label(self.ele,self.dot)
+
+	def __cmp__(self,s):
+		if str(self) == str(s):
+			return 0
+		return -1
 		
 	@staticmethod
 	def label(ele,dot):
@@ -57,6 +78,7 @@ class GrammarFlow:
 		
 		self.node = {}
 		self.edge = {}
+
 		for non in self.grammar.nonterminal:
 			start = Node(non,0)
 			end = Node(non,1)

@@ -13,7 +13,11 @@ class Production:
 			return True
 		return False
 	
-	
+	def __cmp__(self,s):
+		if str(self) == str(s):
+			return 0
+		return -1
+		
 	def __str__(self):
 		return self.left+" -> "+" ".join(self.right)
 
@@ -36,6 +40,9 @@ class ContextFree:
 			l = l.strip()
 			self.nonterminal.add(l)
 			if l == "root":
+				if self.start != None:
+					raise Exception("too Many start symbol")
+
 				self.start = "root"
 
 
@@ -52,6 +59,8 @@ class ContextFree:
 			self.terminal.add(l)
 			self.lexicon[l] = re.compile(r""+r)
 
+	def isToken(self,lex,st):
+		return (self.lexicon[lex].match(st) is not None)
 
 	def __str__(self):
 		s=""
@@ -67,7 +76,5 @@ class ContextFree:
 	def isNonTerminal(s):
 		return (not s.isupper())
 
-	@staticmethod
-	def isToken(lex,st):
-		return (self.lexicon[lex].match(st) is not None)
+	
 
