@@ -68,9 +68,9 @@ class Node:
 
 		else:
 			if dot ==0:
-				return "."+str(ele)
+				return "."+str(ele)+" "
 			else:
-				return str(ele)+"."
+				return str(ele)+". "
         
 class Edge:
 	def __init__(self,nodeA,nodeB,label=None):

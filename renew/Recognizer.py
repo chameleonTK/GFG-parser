@@ -66,6 +66,7 @@ class Recognizer():
 		if self.GFG.grammar.isToken(state.next,self.token[j]):
 			for next in self.GFG.edge[str(state.rule)]:
 				node = self.GFG.edge[str(state.rule)][next].end
+
 				s = State(node,state.start)
 				self.charts[j+1].add_state(s)
 			
