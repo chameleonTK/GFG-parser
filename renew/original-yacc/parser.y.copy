@@ -1,0 +1,41 @@
+/* Infix notation calculator.  */
+
+%{
+  #include <math.h>
+  #include <stdio.h>
+  int yylex (void);
+%}
+
+%union{
+	int intType;
+	char *chType;
+};
+/* Bison declarations.  */
+%token NUMBER
+%token IDENTIFIER
+%left '-' '+'
+%left '*' '/'
+
+%% /* The grammar follows.  */
+exp:
+  NUMBER { $<intType>$ = $<intType>1; }
+| exp '+' exp   { $<intType>$ = $<intType>1 + $<intType>3; }
+| exp '-' exp   { $<intType>$ = $<intType>1 - $<intType>3; }
+| exp '*' exp   { $<intType>$ = $<intType>1 * $<intType>3; }
+| exp '/' exp   { $<intType>$ = $<intType>1 / $<intType>3; }
+| '(' exp ')'   { $<intType>$ = $<intType>2; }
+;
+%%
+
+int yyerror(char *s) { 
+
+ printf("yyerror : %s\n",s); 
+
+} 
+
+int main(void) { 
+
+ yyparse(); 
+
+} 
+
