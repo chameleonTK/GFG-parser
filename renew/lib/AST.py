@@ -1,6 +1,7 @@
 class AST:
-	def __init__(self,ele):
+	def __init__(self,ele,ref):
 		self.ele = ele
+		self.ref = ref
 		self.children = []
 	
 	def __str__(self):
@@ -9,8 +10,7 @@ class AST:
 	@staticmethod
 	def printAST(t,n):
 		s=""
-		for i in range(n):
-			s+="    "	
+		s+="    "*n	
 		s+= str(t.ele)+"\n"
 
 		for e in t.children:

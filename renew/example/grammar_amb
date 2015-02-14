@@ -1,3 +1,0 @@
-root -> exp
-exp -> exp PLUS exp | exp MINUS exp
-exp -> NUMBER

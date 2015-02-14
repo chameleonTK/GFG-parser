@@ -1,3 +1,0 @@
-root -> exp
-exp -> LPAREN exp PLUS exp RPAREN | LPAREN exp MINUS exp RPAREN
-exp -> NUMBER
