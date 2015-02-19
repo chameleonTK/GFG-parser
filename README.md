@@ -20,6 +20,17 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 * renew , by using GFG
 * implement simply original earley recoginzer
 
+# How To #
+* create your own Grammar 
+* create your own Lexicon base on [PLY tools](http://www.dabeaz.com/ply/ply.html)
+* create your compiler 
+
+``````````````````
+python lib/Earley.py [path/to/your/lexicon] [path/to/your/grammar] -o [your/compiler/name].py
+
+``````````````````
+* modify your compiler 
+
 * * * 
 
 ## Context Free Object ##
