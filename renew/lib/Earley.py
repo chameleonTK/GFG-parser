@@ -10,10 +10,10 @@ from Tokenizer import Tokenizer
 
 
 class Earley:
-	def __init__(self,grammar_path):
+	def __init__(self,grammar_path,lex_path):
 
-		tokenizer = Tokenizer()
-		G = ContextFree(grammar_path ,tokenizer)
+		tokenizer = Tokenizer(lex_path)
+		G = ContextFree(grammar_path,tokenizer)
 		GFG = GrammarFlow(G)
 
 		self.tokenizer = tokenizer
@@ -30,9 +30,8 @@ class Earley:
 	def run(self,code):
 		token = self.tokenizer.tokenize(code)
 		charts = self.recognize(token)
-		AST = self.parse(charts)
-		self.pars.semantic(AST)
-		return AST
+		self.AST = self.parse(charts)
+		return self.pars.semantic(self.AST)
 
 	@staticmethod
 	def set_semantic_file(productions,semantic_path):
@@ -80,7 +79,7 @@ if __name__ == "__main__":
 	s += '\nimport sys\n'
 	s += "from lib import Earley\n\n\n"
 	s += 'if __name__ == "__main__":\n\n'
-	s += '\tE  = Earley.Earley("'+output_file+'")\n'
+	s += '\tE  = Earley.Earley("'+output_file+'","'+args.lexicon+'")\n'
 	s += "\tif len(sys.argv) == 2 :\n"
 	s += "\t\tf = open(sys.argv[1])\n"
 	s += "\t\tE.run(f.read())\n"

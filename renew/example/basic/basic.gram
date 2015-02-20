@@ -1,0 +1,43 @@
+root -> program
+program -> program statement | statement
+statement -> INTEGER command NEWLINE
+statement -> RUN NEWLINE | LIST NEWLINE | NEW NEWLINE
+statement -> INTEGER NEWLINE
+statement -> NEWLINE
+command -> LET variable EQUALS expr
+command -> READ varlist
+command -> DATA numlist
+command -> PRINT plist optend
+command -> PRINT plist 
+optend -> COMMA | SEMI
+command -> PRINT
+command -> GOTO INTEGER
+command -> IF relexpr THEN INTEGER
+command -> FOR ID EQUALS expr TO expr
+command -> FOR ID EQUALS expr TO expr STEP expr
+command -> NEXT ID
+command -> END
+command -> REM
+command -> STOP
+command -> DEF ID LPAREN ID RPAREN EQUALS expr
+command -> GOSUB INTEGER
+command -> RETURN
+command -> DIM dimlist
+dimlist -> dimlist COMMA dimitem | dimitem
+dimitem -> ID LPAREN INTEGER RPAREN
+dimitem -> ID LPAREN INTEGER COMMA INTEGER RPAREN
+expr -> expr PLUS term | expr MINUS term | term
+term -> term TIMES expo | term DIVIDE expo | expo
+expo -> base POWER expo | base
+base -> number | LPAREN expr RPAREN | variable
+relexpr -> expr LT expr | expr LE expr | expr GT expr | expr GE expr 
+relexpr -> expr EQUALS expr | expr NE expr
+variable -> ID | ID LPAREN expr RPAREN | ID LPAREN expr COMMA expr RPAREN
+varlist -> varlist COMMA variable | variable
+numlist -> numlist COMMA number | number
+number  -> INTEGER | FLOAT
+number  -> MINUS INTEGER | MINUS FLOAT
+plist   -> plist COMMA pitem | pitem
+pitem -> STRING
+pitem -> STRING expr
+pitem -> expr

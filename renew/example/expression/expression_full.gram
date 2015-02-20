@@ -1,0 +1,5 @@
+root -> exp
+exp -> exp PLUS term | exp MINUS term | term
+term -> term TIMES pre | term DIVIDE pre | pre
+pre -> PLUS state | MINUS state | state
+state -> NUMBER | LPAREN exp RPAREN

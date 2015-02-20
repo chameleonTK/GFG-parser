@@ -1,5 +1,3 @@
-
-
 def sem_root_1(p):
 	'root -> exp'
 	print "cal >",p[0]
@@ -24,10 +22,9 @@ from lib import Earley
 
 if __name__ == "__main__":
 
-	E  = Earley.Earley("compiler.py")
+	E  = Earley.Earley("cmp-expression.py","example/expression/expression.lex")
 	if len(sys.argv) == 2 :
 		f = open(sys.argv[1])
 		E.run(f.read())
-		print a
 	else:
 		print "PLEASE INPUT YOUR CODE!!"

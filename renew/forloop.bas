@@ -1,0 +1,10 @@
+5 PRINT 2,"is prime"
+10 FOR X = 3 TO 100 STEP 1
+12 FOR Y = 2 TO X STEP 1
+13 IF X%Y = 0 THEN 17
+14 NEXT Y
+15 PRINT X,"is prime"
+16 GOTO 18
+17 PRINT X,"is not prime"
+18 NEXT X
+19 END

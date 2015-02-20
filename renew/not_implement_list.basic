@@ -1,0 +1,66 @@
+
+def sem_statement_2(p):
+	'statement -> RUN NEWLINE'
+	raise Exception("not support [statement -> RUN NEWLINE]")
+	return RUN
+
+def sem_statement_3(p):
+	'statement -> LIST NEWLINE'
+	raise Exception("not support [statement -> LIST NEWLINE]")
+	return p
+
+def sem_statement_4(p):
+	'statement -> NEW NEWLINE'
+	raise Exception("not support [statement -> NEW NEWLINE]")
+	return p
+
+def sem_command_15(p):
+	'command -> DEF ID LPAREN ID RPAREN EQUALS expr'
+	raise Exception("not support [command -> DEF ID LPAREN ID RPAREN EQUALS expr]")
+	return p
+
+def sem_command_16(p):
+	'command -> GOSUB INTEGER'
+	raise Exception("not support [command -> GOSUB INTEGER]")
+	return p
+
+def sem_command_17(p):
+	'command -> RETURN'
+	raise Exception("not support [command -> RETURN]")
+	return p
+
+def sem_command_18(p):
+	'command -> DIM dimlist'
+	raise Exception("not support [command -> DIM dimlist]")
+	return p
+
+def sem_dimlist_1(p):
+	'dimlist -> dimlist COMMA dimitem'
+	return p
+
+def sem_dimlist_2(p):
+	'dimlist -> dimitem'
+	return p
+
+def sem_dimitem_1(p):
+	'dimitem -> ID LPAREN INTEGER RPAREN'
+	return p
+
+def sem_dimitem_2(p):
+	'dimitem -> ID LPAREN INTEGER COMMA INTEGER RPAREN'
+	return p
+
+
+
+
+def sem_variable_2(p):
+	'variable -> ID LPAREN expr RPAREN'
+	raise Exception("not support [variable -> ID LPAREN expr RPAREN]")
+	#list
+	return p
+
+def sem_variable_3(p):
+	'variable -> ID LPAREN expr COMMA expr RPAREN'
+	raise Exception("not support [variable -> ID LPAREN expr COMMA expr RPAREN]")
+	#table
+	return p

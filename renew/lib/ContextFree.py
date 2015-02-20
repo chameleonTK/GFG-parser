@@ -50,19 +50,28 @@ class ContextFree:
 			l = l.strip()
 			if l == "root":
 				if start != None:
-					raise Exception("too Many start symbol")			
+					raise Exception("too Many root symbol")			
 				start = 'root'
 			for rule in r.split("|"):
 				production.append( Production(l,rule,None) )
+
+		if start == None:
+			raise Exception("did you forget root symbol?")			
 		return production
 
 	def get_production_semantic_file(self,gram):
 		mod = imp.load_source("*", gram)
 		for x in dir(mod):
+			if "sem_" not in x:
+				continue
+				
 			obj = getattr(mod,x)
 			if isinstance(obj, types.FunctionType):
 				line = obj.__doc__
-				l,r = line.split("->")
+
+				sp = line.split("->")
+
+				l,r = sp
 				l = l.strip()
 				self.nonterminal.add(l)
 				if l == "root":
