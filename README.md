@@ -10,9 +10,8 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 
 # TODO #
 * debug mode
-* recognizer & parser
-* epsilon production??
-* setting type of node in GFG
+* not support epsilon production
+* EBNF format
 * testing 
 * cannot parser multiple tree
 
