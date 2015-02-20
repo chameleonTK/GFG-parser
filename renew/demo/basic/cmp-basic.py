@@ -285,7 +285,7 @@ def sem_pitem_3(p):
 
 
 import sys
-from lib import Earley
+from lib.Earley import Earley
 
 
 class Data:
@@ -462,7 +462,7 @@ class BASIC:
 
 if __name__ == "__main__":
 
-	E  = Earley.Earley("cmp-basic.py","example/basic/basic.lex")
+	E  = Earley("cmp-basic.py","../example/basic/basic.lex")
 	if len(sys.argv) == 2 :
 		f = open(sys.argv[1])
 		cmd = E.run(f.read())

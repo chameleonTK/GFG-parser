@@ -77,9 +77,9 @@ if __name__ == "__main__":
 	f = open(output_file,"a")
 	s = ""
 	s += '\nimport sys\n'
-	s += "from lib import Earley\n\n\n"
+	s += "from lib.Earley import Earley\n\n\n"
 	s += 'if __name__ == "__main__":\n\n'
-	s += '\tE  = Earley.Earley("'+output_file+'","'+args.lexicon+'")\n'
+	s += '\tE  = Earley("'+output_file+'","'+args.lexicon+'")\n'
 	s += "\tif len(sys.argv) == 2 :\n"
 	s += "\t\tf = open(sys.argv[1])\n"
 	s += "\t\tE.run(f.read())\n"

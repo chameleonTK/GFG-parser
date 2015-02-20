@@ -21,6 +21,12 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 * implement simply original earley recoginzer
 
 # How To #
+* set pythonlib path
+
+``````````````````
+??????????????/
+
+``````````````````
 * create your own Grammar 
 * create your own Lexicon base on [PLY tools](http://www.dabeaz.com/ply/ply.html)
 * create your compiler 

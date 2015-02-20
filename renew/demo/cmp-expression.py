@@ -17,12 +17,12 @@ def sem_exp_3(p):
 
 
 import sys
-from lib import Earley
+from lib.Earley import Earley
 
 
 if __name__ == "__main__":
 
-	E  = Earley.Earley("cmp-expression.py","example/expression/expression.lex")
+	E  = Earley("cmp-expression.py","../example/expression/expression.lex")
 	if len(sys.argv) == 2 :
 		f = open(sys.argv[1])
 		E.run(f.read())

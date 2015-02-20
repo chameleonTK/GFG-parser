@@ -49,12 +49,12 @@ def sem_state_2(p):
 
 
 import sys
-from lib import Earley
+from lib.Earley import Earley
 
 
 if __name__ == "__main__":
 
-	E  = Earley.Earley("cmp-full-expression.py","example/expression/expression.lex")
+	E  = Earley("cmp-full-expression.py","../example/expression/expression.lex")
 	if len(sys.argv) == 2 :
 		E.run(sys.argv[1])
 	else:
