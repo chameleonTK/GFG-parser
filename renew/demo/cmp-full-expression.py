@@ -55,7 +55,5 @@ from lib.Earley import Earley
 if __name__ == "__main__":
 
 	E  = Earley("cmp-full-expression.py","../example/expression/expression.lex")
-	if len(sys.argv) == 2 :
-		E.run(sys.argv[1])
-	else:
-		print "PLEASE INPUT YOUR CODE!!"
+	while True:
+		E.run(raw_input("cal > "))

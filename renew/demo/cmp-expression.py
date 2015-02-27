@@ -23,8 +23,12 @@ from lib.Earley import Earley
 if __name__ == "__main__":
 
 	E  = Earley("cmp-expression.py","../example/expression/expression.lex")
-	if len(sys.argv) == 2 :
-		f = open(sys.argv[1])
-		E.run(f.read())
-	else:
-		print "PLEASE INPUT YOUR CODE!!"
+	print "#### THIS GRAMMAR MUST HAVE PARENs IN EVERY OPERATION ####"
+	while True:
+		try:
+			E.run(raw_input("cal > "))
+		except:
+			print ""
+			break
+		
+

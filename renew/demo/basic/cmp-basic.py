@@ -160,7 +160,7 @@ def sem_term_2(p):
 	'term -> term DIVIDE expo'
 	return {"op":"DIVIDE","a":p[0],"b":p[2]}
 
-def sem_term_2(p):
+def sem_term_3(p):
 	'term -> term MOD expo'
 	return {"op":"MOD","a":p[0],"b":p[2]}
 
@@ -462,7 +462,7 @@ class BASIC:
 
 if __name__ == "__main__":
 
-	E  = Earley("cmp-basic.py","../example/basic/basic.lex")
+	E  = Earley("cmp-basic.py","../../example/basic/basic.lex")
 	if len(sys.argv) == 2 :
 		f = open(sys.argv[1])
 		cmd = E.run(f.read())
