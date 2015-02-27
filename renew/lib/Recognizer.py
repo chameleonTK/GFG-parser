@@ -28,6 +28,7 @@ class Recognizer():
 
 			i+=1
 
+
 		fin = State(self.GFG.final,0)
 		self.fin = None
 		for state in self.charts[len(self.charts)-1].states:

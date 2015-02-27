@@ -145,17 +145,21 @@ class GrammarFlow:
 			mark[k]=False
 
 		queue = [str(self.start)]
+		mark[str(self.start)] = True
+
 		nMark = 0
 		while len(queue) > 0:
 			focus = queue.pop(0)
-			mark[focus] = True
 			nMark +=1
 			s += focus+"\n"
-			
+
 			if self.edge.has_key(focus):			
 				for k in self.edge[focus].keys():
 					if not mark[k]:
+						mark[k] = True
 						queue.append(k)
+
 					s+= " >>>> "+str(self.edge[focus][k]) +"\n"
 			s+="\n"
+			
 		return s
