@@ -15,24 +15,41 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 * testing 
 * cannot parser multiple tree
 
-
-# Update #
-* renew , by using GFG
-* implement simply original earley recoginzer
-
-# How To #
-* set pythonlib path
+# Installation #
+* Clone our project
+``````````````````
+git clone https://kramatk@bitbucket.org/kramatk/earleyparser.git
 
 ``````````````````
-??????????????/
+
+* Link our lib to your `$PYTHONPATH`
 
 ``````````````````
-* create your own Grammar 
-* create your own Lexicon base on [PLY tools](http://www.dabeaz.com/ply/ply.html)
-* create your compiler 
+sudo ln -s noom /usr/lib/python2.7/noom
 
 ``````````````````
-python lib/Earley.py [path/to/your/lexicon] [path/to/your/grammar] -o [your/compiler/name].py
+
+* Set your `$PATH`
+
+``````````````````
+export PATH=$PATH:/your/absolute/path/
+
+``````````````````
+* Make our project execuable
+
+``````````````````
+cd noom
+chmod +x Noom.py
+
+``````````````````
+
+# Usage #
+* create your Grammar 
+* create your Lexicon base on [PLY tools](http://www.dabeaz.com/ply/ply.html)
+* create your compiler
+
+``````````````````
+Noom.py [path/to/your/lexicon] [path/to/your/grammar] -o [your/compiler/name].py
 
 ``````````````````
 * modify your compiler 
