@@ -17,183 +17,72 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 
 # Installation #
 * Clone our project
-``````````````````
-git clone https://kramatk@bitbucket.org/kramatk/earleyparser.git
-
-``````````````````
+> git clone https://kramatk@bitbucket.org/kramatk/earleyparser.git
 
 * Link our lib to your `$PYTHONPATH`
-
-``````````````````
-sudo ln -s noom /usr/lib/python2.7/noom
-
-``````````````````
+> sudo ln -s noom /usr/lib/python2.7/noom
 
 * Set your `$PATH`
+> export PATH=$PATH:/your/absolute/path/
 
-``````````````````
-export PATH=$PATH:/your/absolute/path/
-
-``````````````````
 * Make our project execuable
-
-``````````````````
-cd noom
-chmod +x Noom.py
-
-``````````````````
+>cd noom
+>chmod +x Noom.py
 
 # Usage #
 * create your Grammar 
-* create your Lexicon base on [PLY tools](http://www.dabeaz.com/ply/ply.html)
-* create your compiler
 
-``````````````````
-Noom.py [path/to/your/lexicon] [path/to/your/grammar] -o [your/compiler/name].py
-
-``````````````````
-* modify your compiler 
-
-* * * 
-
-## Context Free Object ##
-
-### [#] ContextFree( grammar , lexicon) ###
-
-**grammar** is address of file that contain grammar information (string)
-
-**lexicon** is address of file that contain lexicon information (string)
-
-grammar file format
 ``````````````````
 root -> exp
-exp -> exp PLUS exp | exp MINUS exp
+exp -> LPAREN exp PLUS exp RPAREN | LPAREN exp MINUS exp RPAREN
 exp -> NUMBER
+
 ``````````````````
+* create your Lexicon base on [PLY tools](http://www.dabeaz.com/ply/ply.html)
 
-lexicon file format
 ``````````````````
-NUMBER -> \d+
-PLUS -> \+
-MINUS -> -
-MUL -> \*
-DIV -> /
+# List of token names.   This is always required
+tokens = (
+   'NUMBER',
+   'PLUS',
+   'MINUS',
+   'TIMES',
+   'DIVIDE',
+   'LPAREN',
+   'RPAREN',
+)
+
+# Regular expression rules for simple tokens
+t_PLUS    = r'\+'
+t_MINUS   = r'-'
+t_TIMES   = r'\*'
+t_DIVIDE  = r'/'
+t_LPAREN  = r'\('
+t_RPAREN  = r'\)'
+
+# A regular expression rule with some action code
+def t_NUMBER(t):
+    r'\d+'
+    t.value = int(t.value)    
+    return t
+
+# Define a rule so we can track line numbers
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+# A string containing ignored characters (spaces and tabs)
+t_ignore  = ' \t'
+
+# Error handling rule
+def t_error(t):
+    "lexicon error"    
+    raise Exception("Illegal character '%s'" % t.value[0])     
+    t.lexer.skip(1)
+
 ``````````````````
-
-### [#] self.nonterminal ###
-return set() of nonterminal 
-
-### [#] self.terminal ###
-return set() of terminal 
-
-### [#] self.production ###
-return list of `Production object`
-
-### [#] self.start ###
-return "root" if `grammar` file has `root` production
-
-### [#] self.lexicon ###
-return dictionary `[key => [terminal symbol]]` `[value = Re object]`
-
-### [#] ContextFree.isTerminal( s ) ###
-return `True` if s is terminal format ( we defined s is terminal when s is UpperChar )
-
-### [#] ContextFree.isNonTerminal( s ) ###
-return `True` if s is non-terminal format 
-
-### [#] ContextFree.isToken( lexicon , s ) ###
-return `True` if s is terminal of lexicon
+* create your compiler
+> Noom.py [lexicon] [grammar] -o [compiler/name].py
 
 
-* * *
-
-## Production Object ##
-
-### [#] Production( left , right) ###
-
-**left** is Terminal in left side of production (string).
-
-**right** is String that is right side of production separate each terminal/non-terminal by space  (string)
-
-### [#] self.left ###
-return terminal in left side
-
-### [#] self.right ###
-return list of terminal in right
-
-### [#] self.isEpsilon() ###
-return `True` if self is epsilon production
-
-* * *
-
-## GrammarFlow Object ##
-
-### [#] GrammarFlow( grammar ) ###
-
-**grammar** : ContextFree object
-
-### [#] self.node ###
-return dictionary `[key =>  [Node label] ]` `[value = Node object of It''s label ]`
-
-\* Node label : str(Node object)
-
-### [#] self.edge ###
-return dictionary of dictionary `[key => [Node label][Node label] ]` `[value = Edge object ]`
-
-\* Node label : str(Node object)
-
-### [#] self.addEdge(edge) ###
-return add `Edge object` to `self.edge`
-
-
-\* Not implement to support epsilon production 
-
-* * *
-
-## Node Object ##
-
-### [#] Node(ele , dot ) ###
-
-**ele** : may be `Production object` or `non-terminal symbol`
-
-**dot** : progress of production if `ele` is non-terminal, dot should be `0` or `1` (int)
-
-### [#] self.ele ###
-return ele of Node ,, It's smt that node represent.
-
-### [#] self.dot ###
-return dot (int)
-
-### [#] self.type ###
-return list of node type 
-
-\* some node can be many type.
-
-### [#] self.isType(tp) ###
-return `True` if self is type `tp`
-
-### [#] Node.label(ele,dot) ###
-return label of ele (string) 
-
-\* use as key of dictionary in `GrammarFlow obj`
-
-
-* * *
-
-## Edge Object ##
-
-### [#] Edge(nodeA , NodeB, label=None ) ###
-
-**nodeA** : `Node obj` that is start point
-
-**NodeB** : `Node obj` that is end point
-
-**label (optional)** : label of edge (string)
-
-### [#] self.start , self.end ###
-return `Node obj`
-
-### [#] self.lebel ###
-return label (string)
-
-* * *
+* modify your compiler 
