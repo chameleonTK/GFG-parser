@@ -34,11 +34,11 @@ def sem_statement_4(p):
 
 def sem_statement_5(p):
 	'statement -> INTEGER NEWLINE'
-	return {"line":int(p[0].value),"cmd":None}
+	return {"line":int(p[0].value),"cmd":{"type":"NONE"}}
 
 def sem_statement_6(p):
 	'statement -> NEWLINE'
-	return {"line":None,"cmd":None}
+	return {"line":None,"cmd":{"type":"NONE"}}
 
 def sem_command_1(p):
 	'command -> LET variable EQUALS expr'
@@ -160,7 +160,7 @@ def sem_term_2(p):
 	'term -> term DIVIDE expo'
 	return {"op":"DIVIDE","a":p[0],"b":p[2]}
 
-def sem_term_3(p):
+def sem_term_mod(p):
 	'term -> term MOD expo'
 	return {"op":"MOD","a":p[0],"b":p[2]}
 
@@ -285,7 +285,7 @@ def sem_pitem_3(p):
 
 
 import sys
-from lib.Earley import Earley
+from noom.Noom import Noom
 
 
 class Data:
@@ -462,7 +462,7 @@ class BASIC:
 
 if __name__ == "__main__":
 
-	E  = Earley("cmp-basic.py","../../example/basic/basic.lex")
+	E  = Noom("cmp-basic.py","basic.lex")
 	if len(sys.argv) == 2 :
 		f = open(sys.argv[1])
 		cmd = E.run(f.read())

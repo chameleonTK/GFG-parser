@@ -17,12 +17,12 @@ def sem_exp_3(p):
 
 
 import sys
-from lib.Earley import Earley
+from noom.Noom import Noom
 
 
 if __name__ == "__main__":
 
-	E  = Earley("cmp-expression.py","../example/expression/expression.lex")
+	E  = Noom("cmp-expression.py","../expression.lex")
 	print "#### THIS GRAMMAR MUST HAVE PARENs IN EVERY OPERATION ####"
 	while True:
 		try:

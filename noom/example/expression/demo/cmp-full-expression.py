@@ -49,11 +49,11 @@ def sem_state_2(p):
 
 
 import sys
-from lib.Earley import Earley
+from noom.Noom import Noom
 
 
 if __name__ == "__main__":
 
-	E  = Earley("cmp-full-expression.py","../example/expression/expression.lex")
+	E  = Noom("cmp-full-expression.py","../expression.lex")
 	while True:
 		E.run(raw_input("cal > "))

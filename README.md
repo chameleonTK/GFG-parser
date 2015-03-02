@@ -14,6 +14,7 @@ GFG is tool that can reformulated parsing problem to the problem of finding cert
 * EBNF format
 * testing 
 * cannot parser multiple tree
+* documentation
 
 # Installation #
 * Clone our project
