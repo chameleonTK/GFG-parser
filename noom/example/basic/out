@@ -1,0 +1,3614 @@
+.root 
+ >>>> (.root  , root -> . program )
+
+root -> . program 
+ >>>> (root -> . program  , .program )
+
+.program 
+ >>>> (.program  , program -> . program statement )
+ >>>> (.program  , program -> . statement )
+
+program -> . program statement 
+ >>>> (program -> . program statement  , .program )
+
+program -> . statement 
+ >>>> (program -> . statement  , .statement )
+
+.statement 
+ >>>> (.statement  , statement -> . RUN NEWLINE )
+ >>>> (.statement  , statement -> . NEWLINE )
+ >>>> (.statement  , statement -> . INTEGER NEWLINE )
+ >>>> (.statement  , statement -> . INTEGER command NEWLINE )
+ >>>> (.statement  , statement -> . NEW NEWLINE )
+ >>>> (.statement  , statement -> . LIST NEWLINE )
+
+statement -> . RUN NEWLINE 
+ >>>> (statement -> . RUN NEWLINE  , statement -> RUN . NEWLINE ) with RUN
+
+statement -> . NEWLINE 
+ >>>> (statement -> . NEWLINE  , statement -> NEWLINE . ) with NEWLINE
+
+statement -> . INTEGER NEWLINE 
+ >>>> (statement -> . INTEGER NEWLINE  , statement -> INTEGER . NEWLINE ) with INTEGER
+
+statement -> . INTEGER command NEWLINE 
+ >>>> (statement -> . INTEGER command NEWLINE  , statement -> INTEGER . command NEWLINE ) with INTEGER
+
+statement -> . NEW NEWLINE 
+ >>>> (statement -> . NEW NEWLINE  , statement -> NEW . NEWLINE ) with NEW
+
+statement -> . LIST NEWLINE 
+ >>>> (statement -> . LIST NEWLINE  , statement -> LIST . NEWLINE ) with LIST
+
+statement -> RUN . NEWLINE 
+ >>>> (statement -> RUN . NEWLINE  , statement -> RUN NEWLINE . ) with NEWLINE
+
+statement -> NEWLINE . 
+ >>>> (statement -> NEWLINE .  , statement. )
+
+statement -> INTEGER . NEWLINE 
+ >>>> (statement -> INTEGER . NEWLINE  , statement -> INTEGER NEWLINE . ) with NEWLINE
+
+statement -> INTEGER . command NEWLINE 
+ >>>> (statement -> INTEGER . command NEWLINE  , .command )
+
+statement -> NEW . NEWLINE 
+ >>>> (statement -> NEW . NEWLINE  , statement -> NEW NEWLINE . ) with NEWLINE
+
+statement -> LIST . NEWLINE 
+ >>>> (statement -> LIST . NEWLINE  , statement -> LIST NEWLINE . ) with NEWLINE
+
+statement -> RUN NEWLINE . 
+ >>>> (statement -> RUN NEWLINE .  , statement. )
+
+statement. 
+ >>>> (statement.  , program -> statement . )
+ >>>> (statement.  , program -> program statement . )
+
+statement -> INTEGER NEWLINE . 
+ >>>> (statement -> INTEGER NEWLINE .  , statement. )
+
+.command 
+ >>>> (.command  , command -> . DATA numlist )
+ >>>> (.command  , command -> . PRINT plist )
+ >>>> (.command  , command -> . FOR ID EQUALS expr TO expr STEP expr )
+ >>>> (.command  , command -> . PRINT )
+ >>>> (.command  , command -> . RETURN )
+ >>>> (.command  , command -> . DEF ID LPAREN ID RPAREN EQUALS expr )
+ >>>> (.command  , command -> . GOSUB INTEGER )
+ >>>> (.command  , command -> . FOR ID EQUALS expr TO expr )
+ >>>> (.command  , command -> . IF relexpr THEN INTEGER )
+ >>>> (.command  , command -> . GOTO INTEGER )
+ >>>> (.command  , command -> . LET variable EQUALS expr )
+ >>>> (.command  , command -> . PRINT plist optend )
+ >>>> (.command  , command -> . REM )
+ >>>> (.command  , command -> . STOP )
+ >>>> (.command  , command -> . READ varlist )
+ >>>> (.command  , command -> . NEXT ID )
+ >>>> (.command  , command -> . END )
+ >>>> (.command  , command -> . DIM dimlist )
+
+statement -> NEW NEWLINE . 
+ >>>> (statement -> NEW NEWLINE .  , statement. )
+
+statement -> LIST NEWLINE . 
+ >>>> (statement -> LIST NEWLINE .  , statement. )
+
+statement. 
+ >>>> (statement.  , program -> statement . )
+ >>>> (statement.  , program -> program statement . )
+
+program -> statement . 
+ >>>> (program -> statement .  , program. )
+
+program -> program statement . 
+ >>>> (program -> program statement .  , program. )
+
+command -> . DATA numlist 
+ >>>> (command -> . DATA numlist  , command -> DATA . numlist ) with DATA
+
+command -> . PRINT plist 
+ >>>> (command -> . PRINT plist  , command -> PRINT . plist ) with PRINT
+
+command -> . FOR ID EQUALS expr TO expr STEP expr 
+ >>>> (command -> . FOR ID EQUALS expr TO expr STEP expr  , command -> FOR . ID EQUALS expr TO expr STEP expr ) with FOR
+
+command -> . PRINT 
+ >>>> (command -> . PRINT  , command -> PRINT . ) with PRINT
+
+command -> . RETURN 
+ >>>> (command -> . RETURN  , command -> RETURN . ) with RETURN
+
+command -> . DEF ID LPAREN ID RPAREN EQUALS expr 
+ >>>> (command -> . DEF ID LPAREN ID RPAREN EQUALS expr  , command -> DEF . ID LPAREN ID RPAREN EQUALS expr ) with DEF
+
+command -> . GOSUB INTEGER 
+ >>>> (command -> . GOSUB INTEGER  , command -> GOSUB . INTEGER ) with GOSUB
+
+command -> . FOR ID EQUALS expr TO expr 
+ >>>> (command -> . FOR ID EQUALS expr TO expr  , command -> FOR . ID EQUALS expr TO expr ) with FOR
+
+command -> . IF relexpr THEN INTEGER 
+ >>>> (command -> . IF relexpr THEN INTEGER  , command -> IF . relexpr THEN INTEGER ) with IF
+
+command -> . GOTO INTEGER 
+ >>>> (command -> . GOTO INTEGER  , command -> GOTO . INTEGER ) with GOTO
+
+command -> . LET variable EQUALS expr 
+ >>>> (command -> . LET variable EQUALS expr  , command -> LET . variable EQUALS expr ) with LET
+
+command -> . PRINT plist optend 
+ >>>> (command -> . PRINT plist optend  , command -> PRINT . plist optend ) with PRINT
+
+command -> . REM 
+ >>>> (command -> . REM  , command -> REM . ) with REM
+
+command -> . STOP 
+ >>>> (command -> . STOP  , command -> STOP . ) with STOP
+
+command -> . READ varlist 
+ >>>> (command -> . READ varlist  , command -> READ . varlist ) with READ
+
+command -> . NEXT ID 
+ >>>> (command -> . NEXT ID  , command -> NEXT . ID ) with NEXT
+
+command -> . END 
+ >>>> (command -> . END  , command -> END . ) with END
+
+command -> . DIM dimlist 
+ >>>> (command -> . DIM dimlist  , command -> DIM . dimlist ) with DIM
+
+program -> statement . 
+ >>>> (program -> statement .  , program. )
+
+program -> program statement . 
+ >>>> (program -> program statement .  , program. )
+
+program. 
+ >>>> (program.  , program -> program . statement )
+ >>>> (program.  , root -> program . )
+
+program. 
+ >>>> (program.  , program -> program . statement )
+ >>>> (program.  , root -> program . )
+
+command -> DATA . numlist 
+ >>>> (command -> DATA . numlist  , .numlist )
+
+command -> PRINT . plist 
+ >>>> (command -> PRINT . plist  , .plist )
+
+command -> FOR . ID EQUALS expr TO expr STEP expr 
+ >>>> (command -> FOR . ID EQUALS expr TO expr STEP expr  , command -> FOR ID . EQUALS expr TO expr STEP expr ) with ID
+
+command -> PRINT . 
+ >>>> (command -> PRINT .  , command. )
+
+command -> RETURN . 
+ >>>> (command -> RETURN .  , command. )
+
+command -> DEF . ID LPAREN ID RPAREN EQUALS expr 
+ >>>> (command -> DEF . ID LPAREN ID RPAREN EQUALS expr  , command -> DEF ID . LPAREN ID RPAREN EQUALS expr ) with ID
+
+command -> GOSUB . INTEGER 
+ >>>> (command -> GOSUB . INTEGER  , command -> GOSUB INTEGER . ) with INTEGER
+
+command -> FOR . ID EQUALS expr TO expr 
+ >>>> (command -> FOR . ID EQUALS expr TO expr  , command -> FOR ID . EQUALS expr TO expr ) with ID
+
+command -> IF . relexpr THEN INTEGER 
+ >>>> (command -> IF . relexpr THEN INTEGER  , .relexpr )
+
+command -> GOTO . INTEGER 
+ >>>> (command -> GOTO . INTEGER  , command -> GOTO INTEGER . ) with INTEGER
+
+command -> LET . variable EQUALS expr 
+ >>>> (command -> LET . variable EQUALS expr  , .variable )
+
+command -> PRINT . plist optend 
+ >>>> (command -> PRINT . plist optend  , .plist )
+
+command -> REM . 
+ >>>> (command -> REM .  , command. )
+
+command -> STOP . 
+ >>>> (command -> STOP .  , command. )
+
+command -> READ . varlist 
+ >>>> (command -> READ . varlist  , .varlist )
+
+command -> NEXT . ID 
+ >>>> (command -> NEXT . ID  , command -> NEXT ID . ) with ID
+
+command -> END . 
+ >>>> (command -> END .  , command. )
+
+command -> DIM . dimlist 
+ >>>> (command -> DIM . dimlist  , .dimlist )
+
+program. 
+ >>>> (program.  , program -> program . statement )
+ >>>> (program.  , root -> program . )
+
+program. 
+ >>>> (program.  , program -> program . statement )
+ >>>> (program.  , root -> program . )
+
+program -> program . statement 
+ >>>> (program -> program . statement  , .statement )
+
+root -> program . 
+ >>>> (root -> program .  , root. )
+
+program -> program . statement 
+ >>>> (program -> program . statement  , .statement )
+
+root -> program . 
+ >>>> (root -> program .  , root. )
+
+.numlist 
+ >>>> (.numlist  , numlist -> . numlist COMMA number )
+ >>>> (.numlist  , numlist -> . number )
+
+.plist 
+ >>>> (.plist  , plist -> . plist COMMA pitem )
+ >>>> (.plist  , plist -> . pitem )
+
+command -> FOR ID . EQUALS expr TO expr STEP expr 
+ >>>> (command -> FOR ID . EQUALS expr TO expr STEP expr  , command -> FOR ID EQUALS . expr TO expr STEP expr ) with EQUALS
+
+command. 
+ >>>> (command.  , statement -> INTEGER command . NEWLINE )
+
+command. 
+ >>>> (command.  , statement -> INTEGER command . NEWLINE )
+
+command -> DEF ID . LPAREN ID RPAREN EQUALS expr 
+ >>>> (command -> DEF ID . LPAREN ID RPAREN EQUALS expr  , command -> DEF ID LPAREN . ID RPAREN EQUALS expr ) with LPAREN
+
+command -> GOSUB INTEGER . 
+ >>>> (command -> GOSUB INTEGER .  , command. )
+
+command -> FOR ID . EQUALS expr TO expr 
+ >>>> (command -> FOR ID . EQUALS expr TO expr  , command -> FOR ID EQUALS . expr TO expr ) with EQUALS
+
+.relexpr 
+ >>>> (.relexpr  , relexpr -> . expr GT expr )
+ >>>> (.relexpr  , relexpr -> . expr EQUALS expr )
+ >>>> (.relexpr  , relexpr -> . expr NE expr )
+ >>>> (.relexpr  , relexpr -> . expr GE expr )
+ >>>> (.relexpr  , relexpr -> . expr LE expr )
+ >>>> (.relexpr  , relexpr -> . expr LT expr )
+
+command -> GOTO INTEGER . 
+ >>>> (command -> GOTO INTEGER .  , command. )
+
+.variable 
+ >>>> (.variable  , variable -> . ID )
+ >>>> (.variable  , variable -> . ID LPAREN expr RPAREN )
+ >>>> (.variable  , variable -> . ID LPAREN expr COMMA expr RPAREN )
+
+.plist 
+ >>>> (.plist  , plist -> . plist COMMA pitem )
+ >>>> (.plist  , plist -> . pitem )
+
+command. 
+ >>>> (command.  , statement -> INTEGER command . NEWLINE )
+
+command. 
+ >>>> (command.  , statement -> INTEGER command . NEWLINE )
+
+.varlist 
+ >>>> (.varlist  , varlist -> . varlist COMMA variable )
+ >>>> (.varlist  , varlist -> . variable )
+
+command -> NEXT ID . 
+ >>>> (command -> NEXT ID .  , command. )
+
+command. 
+ >>>> (command.  , statement -> INTEGER command . NEWLINE )
+
+.dimlist 
+ >>>> (.dimlist  , dimlist -> . dimitem )
+ >>>> (.dimlist  , dimlist -> . dimlist COMMA dimitem )
+
+program -> program . statement 
+ >>>> (program -> program . statement  , .statement )
+
+root -> program . 
+ >>>> (root -> program .  , root. )
+
+program -> program . statement 
+ >>>> (program -> program . statement  , .statement )
+
+root -> program . 
+ >>>> (root -> program .  , root. )
+
+root. 
+
+root. 
+
+numlist -> . numlist COMMA number 
+ >>>> (numlist -> . numlist COMMA number  , .numlist )
+
+numlist -> . number 
+ >>>> (numlist -> . number  , .number )
+
+plist -> . plist COMMA pitem 
+ >>>> (plist -> . plist COMMA pitem  , .plist )
+
+plist -> . pitem 
+ >>>> (plist -> . pitem  , .pitem )
+
+command -> FOR ID EQUALS . expr TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS . expr TO expr STEP expr  , .expr )
+
+statement -> INTEGER command . NEWLINE 
+ >>>> (statement -> INTEGER command . NEWLINE  , statement -> INTEGER command NEWLINE . ) with NEWLINE
+
+statement -> INTEGER command . NEWLINE 
+ >>>> (statement -> INTEGER command . NEWLINE  , statement -> INTEGER command NEWLINE . ) with NEWLINE
+
+command -> DEF ID LPAREN . ID RPAREN EQUALS expr 
+ >>>> (command -> DEF ID LPAREN . ID RPAREN EQUALS expr  , command -> DEF ID LPAREN ID . RPAREN EQUALS expr ) with ID
+
+command -> FOR ID EQUALS . expr TO expr 
+ >>>> (command -> FOR ID EQUALS . expr TO expr  , .expr )
+
+relexpr -> . expr GT expr 
+ >>>> (relexpr -> . expr GT expr  , .expr )
+
+relexpr -> . expr EQUALS expr 
+ >>>> (relexpr -> . expr EQUALS expr  , .expr )
+
+relexpr -> . expr NE expr 
+ >>>> (relexpr -> . expr NE expr  , .expr )
+
+relexpr -> . expr GE expr 
+ >>>> (relexpr -> . expr GE expr  , .expr )
+
+relexpr -> . expr LE expr 
+ >>>> (relexpr -> . expr LE expr  , .expr )
+
+relexpr -> . expr LT expr 
+ >>>> (relexpr -> . expr LT expr  , .expr )
+
+variable -> . ID 
+ >>>> (variable -> . ID  , variable -> ID . ) with ID
+
+variable -> . ID LPAREN expr RPAREN 
+ >>>> (variable -> . ID LPAREN expr RPAREN  , variable -> ID . LPAREN expr RPAREN ) with ID
+
+variable -> . ID LPAREN expr COMMA expr RPAREN 
+ >>>> (variable -> . ID LPAREN expr COMMA expr RPAREN  , variable -> ID . LPAREN expr COMMA expr RPAREN ) with ID
+
+plist -> . plist COMMA pitem 
+ >>>> (plist -> . plist COMMA pitem  , .plist )
+
+plist -> . pitem 
+ >>>> (plist -> . pitem  , .pitem )
+
+statement -> INTEGER command . NEWLINE 
+ >>>> (statement -> INTEGER command . NEWLINE  , statement -> INTEGER command NEWLINE . ) with NEWLINE
+
+statement -> INTEGER command . NEWLINE 
+ >>>> (statement -> INTEGER command . NEWLINE  , statement -> INTEGER command NEWLINE . ) with NEWLINE
+
+varlist -> . varlist COMMA variable 
+ >>>> (varlist -> . varlist COMMA variable  , .varlist )
+
+varlist -> . variable 
+ >>>> (varlist -> . variable  , .variable )
+
+statement -> INTEGER command . NEWLINE 
+ >>>> (statement -> INTEGER command . NEWLINE  , statement -> INTEGER command NEWLINE . ) with NEWLINE
+
+dimlist -> . dimitem 
+ >>>> (dimlist -> . dimitem  , .dimitem )
+
+dimlist -> . dimlist COMMA dimitem 
+ >>>> (dimlist -> . dimlist COMMA dimitem  , .dimlist )
+
+root. 
+
+root. 
+
+.number 
+ >>>> (.number  , number -> . INTEGER )
+ >>>> (.number  , number -> . MINUS FLOAT )
+ >>>> (.number  , number -> . FLOAT )
+ >>>> (.number  , number -> . MINUS INTEGER )
+
+.pitem 
+ >>>> (.pitem  , pitem -> . expr )
+ >>>> (.pitem  , pitem -> . STRING )
+ >>>> (.pitem  , pitem -> . STRING expr )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+statement -> INTEGER command NEWLINE . 
+ >>>> (statement -> INTEGER command NEWLINE .  , statement. )
+
+statement -> INTEGER command NEWLINE . 
+ >>>> (statement -> INTEGER command NEWLINE .  , statement. )
+
+command -> DEF ID LPAREN ID . RPAREN EQUALS expr 
+ >>>> (command -> DEF ID LPAREN ID . RPAREN EQUALS expr  , command -> DEF ID LPAREN ID RPAREN . EQUALS expr ) with RPAREN
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+.expr 
+ >>>> (.expr  , expr -> . expr PLUS term )
+ >>>> (.expr  , expr -> . expr MINUS term )
+ >>>> (.expr  , expr -> . term )
+
+variable -> ID . 
+ >>>> (variable -> ID .  , variable. )
+
+variable -> ID . LPAREN expr RPAREN 
+ >>>> (variable -> ID . LPAREN expr RPAREN  , variable -> ID LPAREN . expr RPAREN ) with LPAREN
+
+variable -> ID . LPAREN expr COMMA expr RPAREN 
+ >>>> (variable -> ID . LPAREN expr COMMA expr RPAREN  , variable -> ID LPAREN . expr COMMA expr RPAREN ) with LPAREN
+
+.pitem 
+ >>>> (.pitem  , pitem -> . expr )
+ >>>> (.pitem  , pitem -> . STRING )
+ >>>> (.pitem  , pitem -> . STRING expr )
+
+statement -> INTEGER command NEWLINE . 
+ >>>> (statement -> INTEGER command NEWLINE .  , statement. )
+
+statement -> INTEGER command NEWLINE . 
+ >>>> (statement -> INTEGER command NEWLINE .  , statement. )
+
+statement -> INTEGER command NEWLINE . 
+ >>>> (statement -> INTEGER command NEWLINE .  , statement. )
+
+.dimitem 
+ >>>> (.dimitem  , dimitem -> . ID LPAREN INTEGER COMMA INTEGER RPAREN )
+ >>>> (.dimitem  , dimitem -> . ID LPAREN INTEGER RPAREN )
+
+number -> . INTEGER 
+ >>>> (number -> . INTEGER  , number -> INTEGER . ) with INTEGER
+
+number -> . MINUS FLOAT 
+ >>>> (number -> . MINUS FLOAT  , number -> MINUS . FLOAT ) with MINUS
+
+number -> . FLOAT 
+ >>>> (number -> . FLOAT  , number -> FLOAT . ) with FLOAT
+
+number -> . MINUS INTEGER 
+ >>>> (number -> . MINUS INTEGER  , number -> MINUS . INTEGER ) with MINUS
+
+pitem -> . expr 
+ >>>> (pitem -> . expr  , .expr )
+
+pitem -> . STRING 
+ >>>> (pitem -> . STRING  , pitem -> STRING . ) with STRING
+
+pitem -> . STRING expr 
+ >>>> (pitem -> . STRING expr  , pitem -> STRING . expr ) with STRING
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+command -> DEF ID LPAREN ID RPAREN . EQUALS expr 
+ >>>> (command -> DEF ID LPAREN ID RPAREN . EQUALS expr  , command -> DEF ID LPAREN ID RPAREN EQUALS . expr ) with EQUALS
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+expr -> . expr PLUS term 
+ >>>> (expr -> . expr PLUS term  , .expr )
+
+expr -> . expr MINUS term 
+ >>>> (expr -> . expr MINUS term  , .expr )
+
+expr -> . term 
+ >>>> (expr -> . term  , .term )
+
+variable. 
+ >>>> (variable.  , varlist -> varlist COMMA variable . )
+ >>>> (variable.  , base -> variable . )
+ >>>> (variable.  , command -> LET variable . EQUALS expr )
+ >>>> (variable.  , varlist -> variable . )
+
+variable -> ID LPAREN . expr RPAREN 
+ >>>> (variable -> ID LPAREN . expr RPAREN  , .expr )
+
+variable -> ID LPAREN . expr COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN . expr COMMA expr RPAREN  , .expr )
+
+pitem -> . expr 
+ >>>> (pitem -> . expr  , .expr )
+
+pitem -> . STRING 
+ >>>> (pitem -> . STRING  , pitem -> STRING . ) with STRING
+
+pitem -> . STRING expr 
+ >>>> (pitem -> . STRING expr  , pitem -> STRING . expr ) with STRING
+
+dimitem -> . ID LPAREN INTEGER COMMA INTEGER RPAREN 
+ >>>> (dimitem -> . ID LPAREN INTEGER COMMA INTEGER RPAREN  , dimitem -> ID . LPAREN INTEGER COMMA INTEGER RPAREN ) with ID
+
+dimitem -> . ID LPAREN INTEGER RPAREN 
+ >>>> (dimitem -> . ID LPAREN INTEGER RPAREN  , dimitem -> ID . LPAREN INTEGER RPAREN ) with ID
+
+number -> INTEGER . 
+ >>>> (number -> INTEGER .  , number. )
+
+number -> MINUS . FLOAT 
+ >>>> (number -> MINUS . FLOAT  , number -> MINUS FLOAT . ) with FLOAT
+
+number -> FLOAT . 
+ >>>> (number -> FLOAT .  , number. )
+
+number -> MINUS . INTEGER 
+ >>>> (number -> MINUS . INTEGER  , number -> MINUS INTEGER . ) with INTEGER
+
+pitem -> STRING . 
+ >>>> (pitem -> STRING .  , pitem. )
+
+pitem -> STRING . expr 
+ >>>> (pitem -> STRING . expr  , .expr )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS . expr 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS . expr  , .expr )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+.term 
+ >>>> (.term  , term -> . term TIMES expo )
+ >>>> (.term  , term -> . expo )
+ >>>> (.term  , term -> . term MOD expo )
+
+varlist -> varlist COMMA variable . 
+ >>>> (varlist -> varlist COMMA variable .  , varlist. )
+
+base -> variable . 
+ >>>> (base -> variable .  , base. )
+
+command -> LET variable . EQUALS expr 
+ >>>> (command -> LET variable . EQUALS expr  , command -> LET variable EQUALS . expr ) with EQUALS
+
+varlist -> variable . 
+ >>>> (varlist -> variable .  , varlist. )
+
+pitem -> STRING . 
+ >>>> (pitem -> STRING .  , pitem. )
+
+pitem -> STRING . expr 
+ >>>> (pitem -> STRING . expr  , .expr )
+
+dimitem -> ID . LPAREN INTEGER COMMA INTEGER RPAREN 
+ >>>> (dimitem -> ID . LPAREN INTEGER COMMA INTEGER RPAREN  , dimitem -> ID LPAREN . INTEGER COMMA INTEGER RPAREN ) with LPAREN
+
+dimitem -> ID . LPAREN INTEGER RPAREN 
+ >>>> (dimitem -> ID . LPAREN INTEGER RPAREN  , dimitem -> ID LPAREN . INTEGER RPAREN ) with LPAREN
+
+number. 
+ >>>> (number.  , numlist -> number . )
+ >>>> (number.  , numlist -> numlist COMMA number . )
+ >>>> (number.  , base -> number . )
+
+number -> MINUS FLOAT . 
+ >>>> (number -> MINUS FLOAT .  , number. )
+
+number. 
+ >>>> (number.  , numlist -> number . )
+ >>>> (number.  , numlist -> numlist COMMA number . )
+ >>>> (number.  , base -> number . )
+
+number -> MINUS INTEGER . 
+ >>>> (number -> MINUS INTEGER .  , number. )
+
+pitem. 
+ >>>> (pitem.  , plist -> plist COMMA pitem . )
+ >>>> (pitem.  , plist -> pitem . )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+term -> . term TIMES expo 
+ >>>> (term -> . term TIMES expo  , .term )
+
+term -> . expo 
+ >>>> (term -> . expo  , .expo )
+
+term -> . term MOD expo 
+ >>>> (term -> . term MOD expo  , .term )
+
+varlist. 
+ >>>> (varlist.  , varlist -> varlist . COMMA variable )
+ >>>> (varlist.  , command -> READ varlist . )
+
+base. 
+ >>>> (base.  , expo -> base . )
+ >>>> (base.  , expo -> base . POWER expo )
+
+command -> LET variable EQUALS . expr 
+ >>>> (command -> LET variable EQUALS . expr  , .expr )
+
+varlist. 
+ >>>> (varlist.  , varlist -> varlist . COMMA variable )
+ >>>> (varlist.  , command -> READ varlist . )
+
+pitem. 
+ >>>> (pitem.  , plist -> plist COMMA pitem . )
+ >>>> (pitem.  , plist -> pitem . )
+
+dimitem -> ID LPAREN . INTEGER COMMA INTEGER RPAREN 
+ >>>> (dimitem -> ID LPAREN . INTEGER COMMA INTEGER RPAREN  , dimitem -> ID LPAREN INTEGER . COMMA INTEGER RPAREN ) with INTEGER
+
+dimitem -> ID LPAREN . INTEGER RPAREN 
+ >>>> (dimitem -> ID LPAREN . INTEGER RPAREN  , dimitem -> ID LPAREN INTEGER . RPAREN ) with INTEGER
+
+numlist -> number . 
+ >>>> (numlist -> number .  , numlist. )
+
+numlist -> numlist COMMA number . 
+ >>>> (numlist -> numlist COMMA number .  , numlist. )
+
+base -> number . 
+ >>>> (base -> number .  , base. )
+
+numlist -> number . 
+ >>>> (numlist -> number .  , numlist. )
+
+numlist -> numlist COMMA number . 
+ >>>> (numlist -> numlist COMMA number .  , numlist. )
+
+base -> number . 
+ >>>> (base -> number .  , base. )
+
+plist -> plist COMMA pitem . 
+ >>>> (plist -> plist COMMA pitem .  , plist. )
+
+plist -> pitem . 
+ >>>> (plist -> pitem .  , plist. )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+.expo 
+ >>>> (.expo  , expo -> . base )
+ >>>> (.expo  , expo -> . base POWER expo )
+
+varlist -> varlist . COMMA variable 
+ >>>> (varlist -> varlist . COMMA variable  , varlist -> varlist COMMA . variable ) with COMMA
+
+command -> READ varlist . 
+ >>>> (command -> READ varlist .  , command. )
+
+expo -> base . 
+ >>>> (expo -> base .  , expo. )
+
+expo -> base . POWER expo 
+ >>>> (expo -> base . POWER expo  , expo -> base POWER . expo ) with POWER
+
+varlist -> varlist . COMMA variable 
+ >>>> (varlist -> varlist . COMMA variable  , varlist -> varlist COMMA . variable ) with COMMA
+
+command -> READ varlist . 
+ >>>> (command -> READ varlist .  , command. )
+
+plist -> plist COMMA pitem . 
+ >>>> (plist -> plist COMMA pitem .  , plist. )
+
+plist -> pitem . 
+ >>>> (plist -> pitem .  , plist. )
+
+dimitem -> ID LPAREN INTEGER . COMMA INTEGER RPAREN 
+ >>>> (dimitem -> ID LPAREN INTEGER . COMMA INTEGER RPAREN  , dimitem -> ID LPAREN INTEGER COMMA . INTEGER RPAREN ) with COMMA
+
+dimitem -> ID LPAREN INTEGER . RPAREN 
+ >>>> (dimitem -> ID LPAREN INTEGER . RPAREN  , dimitem -> ID LPAREN INTEGER RPAREN . ) with RPAREN
+
+numlist. 
+ >>>> (numlist.  , numlist -> numlist . COMMA number )
+ >>>> (numlist.  , command -> DATA numlist . )
+
+numlist. 
+ >>>> (numlist.  , numlist -> numlist . COMMA number )
+ >>>> (numlist.  , command -> DATA numlist . )
+
+numlist. 
+ >>>> (numlist.  , numlist -> numlist . COMMA number )
+ >>>> (numlist.  , command -> DATA numlist . )
+
+numlist. 
+ >>>> (numlist.  , numlist -> numlist . COMMA number )
+ >>>> (numlist.  , command -> DATA numlist . )
+
+plist. 
+ >>>> (plist.  , plist -> plist . COMMA pitem )
+ >>>> (plist.  , command -> PRINT plist . optend )
+ >>>> (plist.  , command -> PRINT plist . )
+
+plist. 
+ >>>> (plist.  , plist -> plist . COMMA pitem )
+ >>>> (plist.  , command -> PRINT plist . optend )
+ >>>> (plist.  , command -> PRINT plist . )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+expo -> . base 
+ >>>> (expo -> . base  , .base )
+
+expo -> . base POWER expo 
+ >>>> (expo -> . base POWER expo  , .base )
+
+varlist -> varlist COMMA . variable 
+ >>>> (varlist -> varlist COMMA . variable  , .variable )
+
+expo. 
+ >>>> (expo.  , term -> term TIMES expo . )
+ >>>> (expo.  , term -> expo . )
+ >>>> (expo.  , term -> term MOD expo . )
+ >>>> (expo.  , expo -> base POWER expo . )
+
+expo -> base POWER . expo 
+ >>>> (expo -> base POWER . expo  , .expo )
+
+varlist -> varlist COMMA . variable 
+ >>>> (varlist -> varlist COMMA . variable  , .variable )
+
+plist. 
+ >>>> (plist.  , plist -> plist . COMMA pitem )
+ >>>> (plist.  , command -> PRINT plist . optend )
+ >>>> (plist.  , command -> PRINT plist . )
+
+plist. 
+ >>>> (plist.  , plist -> plist . COMMA pitem )
+ >>>> (plist.  , command -> PRINT plist . optend )
+ >>>> (plist.  , command -> PRINT plist . )
+
+dimitem -> ID LPAREN INTEGER COMMA . INTEGER RPAREN 
+ >>>> (dimitem -> ID LPAREN INTEGER COMMA . INTEGER RPAREN  , dimitem -> ID LPAREN INTEGER COMMA INTEGER . RPAREN ) with INTEGER
+
+dimitem -> ID LPAREN INTEGER RPAREN . 
+ >>>> (dimitem -> ID LPAREN INTEGER RPAREN .  , dimitem. )
+
+numlist -> numlist . COMMA number 
+ >>>> (numlist -> numlist . COMMA number  , numlist -> numlist COMMA . number ) with COMMA
+
+command -> DATA numlist . 
+ >>>> (command -> DATA numlist .  , command. )
+
+numlist -> numlist . COMMA number 
+ >>>> (numlist -> numlist . COMMA number  , numlist -> numlist COMMA . number ) with COMMA
+
+command -> DATA numlist . 
+ >>>> (command -> DATA numlist .  , command. )
+
+numlist -> numlist . COMMA number 
+ >>>> (numlist -> numlist . COMMA number  , numlist -> numlist COMMA . number ) with COMMA
+
+command -> DATA numlist . 
+ >>>> (command -> DATA numlist .  , command. )
+
+numlist -> numlist . COMMA number 
+ >>>> (numlist -> numlist . COMMA number  , numlist -> numlist COMMA . number ) with COMMA
+
+command -> DATA numlist . 
+ >>>> (command -> DATA numlist .  , command. )
+
+plist -> plist . COMMA pitem 
+ >>>> (plist -> plist . COMMA pitem  , plist -> plist COMMA . pitem ) with COMMA
+
+command -> PRINT plist . optend 
+ >>>> (command -> PRINT plist . optend  , .optend )
+
+command -> PRINT plist . 
+ >>>> (command -> PRINT plist .  , command. )
+
+plist -> plist . COMMA pitem 
+ >>>> (plist -> plist . COMMA pitem  , plist -> plist COMMA . pitem ) with COMMA
+
+command -> PRINT plist . optend 
+ >>>> (command -> PRINT plist . optend  , .optend )
+
+command -> PRINT plist . 
+ >>>> (command -> PRINT plist .  , command. )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+.base 
+ >>>> (.base  , base -> . variable )
+ >>>> (.base  , base -> . number )
+ >>>> (.base  , base -> . LPAREN expr RPAREN )
+
+term -> term TIMES expo . 
+ >>>> (term -> term TIMES expo .  , term. )
+
+term -> expo . 
+ >>>> (term -> expo .  , term. )
+
+term -> term MOD expo . 
+ >>>> (term -> term MOD expo .  , term. )
+
+expo -> base POWER expo . 
+ >>>> (expo -> base POWER expo .  , expo. )
+
+plist -> plist . COMMA pitem 
+ >>>> (plist -> plist . COMMA pitem  , plist -> plist COMMA . pitem ) with COMMA
+
+command -> PRINT plist . optend 
+ >>>> (command -> PRINT plist . optend  , .optend )
+
+command -> PRINT plist . 
+ >>>> (command -> PRINT plist .  , command. )
+
+plist -> plist . COMMA pitem 
+ >>>> (plist -> plist . COMMA pitem  , plist -> plist COMMA . pitem ) with COMMA
+
+command -> PRINT plist . optend 
+ >>>> (command -> PRINT plist . optend  , .optend )
+
+command -> PRINT plist . 
+ >>>> (command -> PRINT plist .  , command. )
+
+dimitem -> ID LPAREN INTEGER COMMA INTEGER . RPAREN 
+ >>>> (dimitem -> ID LPAREN INTEGER COMMA INTEGER . RPAREN  , dimitem -> ID LPAREN INTEGER COMMA INTEGER RPAREN . ) with RPAREN
+
+dimitem. 
+ >>>> (dimitem.  , dimlist -> dimlist COMMA dimitem . )
+ >>>> (dimitem.  , dimlist -> dimitem . )
+
+numlist -> numlist COMMA . number 
+ >>>> (numlist -> numlist COMMA . number  , .number )
+
+numlist -> numlist COMMA . number 
+ >>>> (numlist -> numlist COMMA . number  , .number )
+
+numlist -> numlist COMMA . number 
+ >>>> (numlist -> numlist COMMA . number  , .number )
+
+numlist -> numlist COMMA . number 
+ >>>> (numlist -> numlist COMMA . number  , .number )
+
+plist -> plist COMMA . pitem 
+ >>>> (plist -> plist COMMA . pitem  , .pitem )
+
+.optend 
+ >>>> (.optend  , optend -> . COMMA )
+ >>>> (.optend  , optend -> . SEMI )
+
+plist -> plist COMMA . pitem 
+ >>>> (plist -> plist COMMA . pitem  , .pitem )
+
+.optend 
+ >>>> (.optend  , optend -> . COMMA )
+ >>>> (.optend  , optend -> . SEMI )
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+base -> . variable 
+ >>>> (base -> . variable  , .variable )
+
+base -> . number 
+ >>>> (base -> . number  , .number )
+
+base -> . LPAREN expr RPAREN 
+ >>>> (base -> . LPAREN expr RPAREN  , base -> LPAREN . expr RPAREN ) with LPAREN
+
+term. 
+ >>>> (term.  , expr -> expr PLUS term . )
+ >>>> (term.  , expr -> term . )
+ >>>> (term.  , term -> term . MOD expo )
+ >>>> (term.  , expr -> expr MINUS term . )
+ >>>> (term.  , term -> term . TIMES expo )
+
+term. 
+ >>>> (term.  , expr -> expr PLUS term . )
+ >>>> (term.  , expr -> term . )
+ >>>> (term.  , term -> term . MOD expo )
+ >>>> (term.  , expr -> expr MINUS term . )
+ >>>> (term.  , term -> term . TIMES expo )
+
+term. 
+ >>>> (term.  , expr -> expr PLUS term . )
+ >>>> (term.  , expr -> term . )
+ >>>> (term.  , term -> term . MOD expo )
+ >>>> (term.  , expr -> expr MINUS term . )
+ >>>> (term.  , term -> term . TIMES expo )
+
+plist -> plist COMMA . pitem 
+ >>>> (plist -> plist COMMA . pitem  , .pitem )
+
+.optend 
+ >>>> (.optend  , optend -> . COMMA )
+ >>>> (.optend  , optend -> . SEMI )
+
+plist -> plist COMMA . pitem 
+ >>>> (plist -> plist COMMA . pitem  , .pitem )
+
+.optend 
+ >>>> (.optend  , optend -> . COMMA )
+ >>>> (.optend  , optend -> . SEMI )
+
+dimitem -> ID LPAREN INTEGER COMMA INTEGER RPAREN . 
+ >>>> (dimitem -> ID LPAREN INTEGER COMMA INTEGER RPAREN .  , dimitem. )
+
+dimlist -> dimlist COMMA dimitem . 
+ >>>> (dimlist -> dimlist COMMA dimitem .  , dimlist. )
+
+dimlist -> dimitem . 
+ >>>> (dimlist -> dimitem .  , dimlist. )
+
+optend -> . COMMA 
+ >>>> (optend -> . COMMA  , optend -> COMMA . ) with COMMA
+
+optend -> . SEMI 
+ >>>> (optend -> . SEMI  , optend -> SEMI . ) with SEMI
+
+optend -> . COMMA 
+ >>>> (optend -> . COMMA  , optend -> COMMA . ) with COMMA
+
+optend -> . SEMI 
+ >>>> (optend -> . SEMI  , optend -> SEMI . ) with SEMI
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+base -> LPAREN . expr RPAREN 
+ >>>> (base -> LPAREN . expr RPAREN  , .expr )
+
+expr -> expr PLUS term . 
+ >>>> (expr -> expr PLUS term .  , expr. )
+
+expr -> term . 
+ >>>> (expr -> term .  , expr. )
+
+term -> term . MOD expo 
+ >>>> (term -> term . MOD expo  , term -> term MOD . expo ) with MOD
+
+expr -> expr MINUS term . 
+ >>>> (expr -> expr MINUS term .  , expr. )
+
+term -> term . TIMES expo 
+ >>>> (term -> term . TIMES expo  , term -> term TIMES . expo ) with TIMES
+
+expr -> expr PLUS term . 
+ >>>> (expr -> expr PLUS term .  , expr. )
+
+expr -> term . 
+ >>>> (expr -> term .  , expr. )
+
+term -> term . MOD expo 
+ >>>> (term -> term . MOD expo  , term -> term MOD . expo ) with MOD
+
+expr -> expr MINUS term . 
+ >>>> (expr -> expr MINUS term .  , expr. )
+
+term -> term . TIMES expo 
+ >>>> (term -> term . TIMES expo  , term -> term TIMES . expo ) with TIMES
+
+expr -> expr PLUS term . 
+ >>>> (expr -> expr PLUS term .  , expr. )
+
+expr -> term . 
+ >>>> (expr -> term .  , expr. )
+
+term -> term . MOD expo 
+ >>>> (term -> term . MOD expo  , term -> term MOD . expo ) with MOD
+
+expr -> expr MINUS term . 
+ >>>> (expr -> expr MINUS term .  , expr. )
+
+term -> term . TIMES expo 
+ >>>> (term -> term . TIMES expo  , term -> term TIMES . expo ) with TIMES
+
+optend -> . COMMA 
+ >>>> (optend -> . COMMA  , optend -> COMMA . ) with COMMA
+
+optend -> . SEMI 
+ >>>> (optend -> . SEMI  , optend -> SEMI . ) with SEMI
+
+optend -> . COMMA 
+ >>>> (optend -> . COMMA  , optend -> COMMA . ) with COMMA
+
+optend -> . SEMI 
+ >>>> (optend -> . SEMI  , optend -> SEMI . ) with SEMI
+
+dimlist. 
+ >>>> (dimlist.  , command -> DIM dimlist . )
+ >>>> (dimlist.  , dimlist -> dimlist . COMMA dimitem )
+
+dimlist. 
+ >>>> (dimlist.  , command -> DIM dimlist . )
+ >>>> (dimlist.  , dimlist -> dimlist . COMMA dimitem )
+
+optend -> COMMA . 
+ >>>> (optend -> COMMA .  , optend. )
+
+optend -> SEMI . 
+ >>>> (optend -> SEMI .  , optend. )
+
+optend -> COMMA . 
+ >>>> (optend -> COMMA .  , optend. )
+
+optend -> SEMI . 
+ >>>> (optend -> SEMI .  , optend. )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+term -> term MOD . expo 
+ >>>> (term -> term MOD . expo  , .expo )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+term -> term TIMES . expo 
+ >>>> (term -> term TIMES . expo  , .expo )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+term -> term MOD . expo 
+ >>>> (term -> term MOD . expo  , .expo )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+term -> term TIMES . expo 
+ >>>> (term -> term TIMES . expo  , .expo )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+term -> term MOD . expo 
+ >>>> (term -> term MOD . expo  , .expo )
+
+expr. 
+ >>>> (expr.  , expr -> expr . PLUS term )
+ >>>> (expr.  , variable -> ID LPAREN expr COMMA expr . RPAREN )
+ >>>> (expr.  , pitem -> expr . )
+ >>>> (expr.  , relexpr -> expr GE expr . )
+ >>>> (expr.  , command -> LET variable EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr LT expr . )
+ >>>> (expr.  , command -> DEF ID LPAREN ID RPAREN EQUALS expr . )
+ >>>> (expr.  , relexpr -> expr . GE expr )
+ >>>> (expr.  , relexpr -> expr . GT expr )
+ >>>> (expr.  , relexpr -> expr . NE expr )
+ >>>> (expr.  , variable -> ID LPAREN expr . RPAREN )
+ >>>> (expr.  , variable -> ID LPAREN expr . COMMA expr RPAREN )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr STEP expr . )
+ >>>> (expr.  , pitem -> STRING expr . )
+ >>>> (expr.  , base -> LPAREN expr . RPAREN )
+ >>>> (expr.  , expr -> expr . MINUS term )
+ >>>> (expr.  , relexpr -> expr . LE expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . STEP expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr TO expr . )
+ >>>> (expr.  , relexpr -> expr GT expr . )
+ >>>> (expr.  , relexpr -> expr EQUALS expr . )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr )
+ >>>> (expr.  , relexpr -> expr . LT expr )
+ >>>> (expr.  , relexpr -> expr NE expr . )
+ >>>> (expr.  , relexpr -> expr LE expr . )
+ >>>> (expr.  , relexpr -> expr . EQUALS expr )
+ >>>> (expr.  , command -> FOR ID EQUALS expr . TO expr STEP expr )
+
+term -> term TIMES . expo 
+ >>>> (term -> term TIMES . expo  , .expo )
+
+optend -> COMMA . 
+ >>>> (optend -> COMMA .  , optend. )
+
+optend -> SEMI . 
+ >>>> (optend -> SEMI .  , optend. )
+
+optend -> COMMA . 
+ >>>> (optend -> COMMA .  , optend. )
+
+optend -> SEMI . 
+ >>>> (optend -> SEMI .  , optend. )
+
+command -> DIM dimlist . 
+ >>>> (command -> DIM dimlist .  , command. )
+
+dimlist -> dimlist . COMMA dimitem 
+ >>>> (dimlist -> dimlist . COMMA dimitem  , dimlist -> dimlist COMMA . dimitem ) with COMMA
+
+command -> DIM dimlist . 
+ >>>> (command -> DIM dimlist .  , command. )
+
+dimlist -> dimlist . COMMA dimitem 
+ >>>> (dimlist -> dimlist . COMMA dimitem  , dimlist -> dimlist COMMA . dimitem ) with COMMA
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+expr -> expr . PLUS term 
+ >>>> (expr -> expr . PLUS term  , expr -> expr PLUS . term ) with PLUS
+
+variable -> ID LPAREN expr COMMA expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA expr . RPAREN  , variable -> ID LPAREN expr COMMA expr RPAREN . ) with RPAREN
+
+pitem -> expr . 
+ >>>> (pitem -> expr .  , pitem. )
+
+relexpr -> expr GE expr . 
+ >>>> (relexpr -> expr GE expr .  , relexpr. )
+
+command -> LET variable EQUALS expr . 
+ >>>> (command -> LET variable EQUALS expr .  , command. )
+
+relexpr -> expr LT expr . 
+ >>>> (relexpr -> expr LT expr .  , relexpr. )
+
+command -> DEF ID LPAREN ID RPAREN EQUALS expr . 
+ >>>> (command -> DEF ID LPAREN ID RPAREN EQUALS expr .  , command. )
+
+relexpr -> expr . GE expr 
+ >>>> (relexpr -> expr . GE expr  , relexpr -> expr GE . expr ) with GE
+
+relexpr -> expr . GT expr 
+ >>>> (relexpr -> expr . GT expr  , relexpr -> expr GT . expr ) with GT
+
+relexpr -> expr . NE expr 
+ >>>> (relexpr -> expr . NE expr  , relexpr -> expr NE . expr ) with NE
+
+variable -> ID LPAREN expr . RPAREN 
+ >>>> (variable -> ID LPAREN expr . RPAREN  , variable -> ID LPAREN expr RPAREN . ) with RPAREN
+
+variable -> ID LPAREN expr . COMMA expr RPAREN 
+ >>>> (variable -> ID LPAREN expr . COMMA expr RPAREN  , variable -> ID LPAREN expr COMMA . expr RPAREN ) with COMMA
+
+command -> FOR ID EQUALS expr TO expr STEP expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP expr .  , command. )
+
+pitem -> STRING expr . 
+ >>>> (pitem -> STRING expr .  , pitem. )
+
+base -> LPAREN expr . RPAREN 
+ >>>> (base -> LPAREN expr . RPAREN  , base -> LPAREN expr RPAREN . ) with RPAREN
+
+expr -> expr . MINUS term 
+ >>>> (expr -> expr . MINUS term  , expr -> expr MINUS . term ) with MINUS
+
+relexpr -> expr . LE expr 
+ >>>> (relexpr -> expr . LE expr  , relexpr -> expr LE . expr ) with LE
+
+command -> FOR ID EQUALS expr TO expr . STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr . STEP expr  , command -> FOR ID EQUALS expr TO expr STEP . expr ) with STEP
+
+command -> FOR ID EQUALS expr TO expr . 
+ >>>> (command -> FOR ID EQUALS expr TO expr .  , command. )
+
+relexpr -> expr GT expr . 
+ >>>> (relexpr -> expr GT expr .  , relexpr. )
+
+relexpr -> expr EQUALS expr . 
+ >>>> (relexpr -> expr EQUALS expr .  , relexpr. )
+
+command -> FOR ID EQUALS expr . TO expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr  , command -> FOR ID EQUALS expr TO . expr ) with TO
+
+relexpr -> expr . LT expr 
+ >>>> (relexpr -> expr . LT expr  , relexpr -> expr LT . expr ) with LT
+
+relexpr -> expr NE expr . 
+ >>>> (relexpr -> expr NE expr .  , relexpr. )
+
+relexpr -> expr LE expr . 
+ >>>> (relexpr -> expr LE expr .  , relexpr. )
+
+relexpr -> expr . EQUALS expr 
+ >>>> (relexpr -> expr . EQUALS expr  , relexpr -> expr EQUALS . expr ) with EQUALS
+
+command -> FOR ID EQUALS expr . TO expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr . TO expr STEP expr  , command -> FOR ID EQUALS expr TO . expr STEP expr ) with TO
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+optend. 
+ >>>> (optend.  , command -> PRINT plist optend . )
+
+dimlist -> dimlist COMMA . dimitem 
+ >>>> (dimlist -> dimlist COMMA . dimitem  , .dimitem )
+
+dimlist -> dimlist COMMA . dimitem 
+ >>>> (dimlist -> dimlist COMMA . dimitem  , .dimitem )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+expr -> expr PLUS . term 
+ >>>> (expr -> expr PLUS . term  , .term )
+
+variable -> ID LPAREN expr COMMA expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr COMMA expr RPAREN .  , variable. )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr GE . expr 
+ >>>> (relexpr -> expr GE . expr  , .expr )
+
+relexpr -> expr GT . expr 
+ >>>> (relexpr -> expr GT . expr  , .expr )
+
+relexpr -> expr NE . expr 
+ >>>> (relexpr -> expr NE . expr  , .expr )
+
+variable -> ID LPAREN expr RPAREN . 
+ >>>> (variable -> ID LPAREN expr RPAREN .  , variable. )
+
+variable -> ID LPAREN expr COMMA . expr RPAREN 
+ >>>> (variable -> ID LPAREN expr COMMA . expr RPAREN  , .expr )
+
+base -> LPAREN expr RPAREN . 
+ >>>> (base -> LPAREN expr RPAREN .  , base. )
+
+expr -> expr MINUS . term 
+ >>>> (expr -> expr MINUS . term  , .term )
+
+relexpr -> expr LE . expr 
+ >>>> (relexpr -> expr LE . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO expr STEP . expr 
+ >>>> (command -> FOR ID EQUALS expr TO expr STEP . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+command -> FOR ID EQUALS expr TO . expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr  , .expr )
+
+relexpr -> expr LT . expr 
+ >>>> (relexpr -> expr LT . expr  , .expr )
+
+relexpr. 
+
+relexpr. 
+
+relexpr -> expr EQUALS . expr 
+ >>>> (relexpr -> expr EQUALS . expr  , .expr )
+
+command -> FOR ID EQUALS expr TO . expr STEP expr 
+ >>>> (command -> FOR ID EQUALS expr TO . expr STEP expr  , .expr )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> PRINT plist optend . 
+ >>>> (command -> PRINT plist optend .  , command. )
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr . THEN INTEGER 
+ >>>> (command -> IF relexpr . THEN INTEGER  , command -> IF relexpr THEN . INTEGER ) with THEN
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN . INTEGER 
+ >>>> (command -> IF relexpr THEN . INTEGER  , command -> IF relexpr THEN INTEGER . ) with INTEGER
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+command -> IF relexpr THEN INTEGER . 
+ >>>> (command -> IF relexpr THEN INTEGER .  , command. )
+
+

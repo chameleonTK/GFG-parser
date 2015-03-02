@@ -1,5 +1,4 @@
-
-from ContextFree import ContextFree,Production
+from noom.ContextFree import ContextFree,Production
 		
 class Node:
 	def __init__(self,ele,dot):

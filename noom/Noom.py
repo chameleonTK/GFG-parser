@@ -1,15 +1,14 @@
+#! /usr/bin/python
 
 import os
 import argparse
 from ContextFree import ContextFree,Production
-from GrammarFlow import GrammarFlow
-from Parser import Parser
-from Recognizer import Recognizer
+from Keshav.GrammarFlow import GrammarFlow
+from Keshav.Parser import Parser
+from Keshav.Recognizer import Recognizer
 from Tokenizer import Tokenizer
 
-
-
-class Earley:
+class Noom:
 	def __init__(self,grammar_path,lex_path):
 
 		tokenizer = Tokenizer(lex_path)
@@ -72,14 +71,14 @@ if __name__ == "__main__":
 
 	#E.set_semantic_file()
 	productions = ContextFree.get_production_grammar_file(args.grammar)
-	Earley.set_semantic_file(productions,output_file)
+	Noom.set_semantic_file(productions,output_file)
 
 	f = open(output_file,"a")
 	s = ""
 	s += '\nimport sys\n'
-	s += "from lib.Earley import Earley\n\n\n"
+	s += "from noom.Noom import Noom\n\n\n"
 	s += 'if __name__ == "__main__":\n\n'
-	s += '\tE  = Earley("'+output_file+'","'+args.lexicon+'")\n'
+	s += '\tE  = Noom("'+output_file+'","'+args.lexicon+'")\n'
 	s += "\tif len(sys.argv) == 2 :\n"
 	s += "\t\tf = open(sys.argv[1])\n"
 	s += "\t\tE.run(f.read())\n"

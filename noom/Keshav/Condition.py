@@ -1,4 +1,4 @@
-from ContextFree import ContextFree
+from noom.ContextFree import ContextFree
 
 class Condition():
 	def __init__(self,start,end,state):

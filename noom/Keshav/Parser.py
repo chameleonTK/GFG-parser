@@ -1,7 +1,8 @@
-from ContextFree import ContextFree,Production
+from noom.ContextFree import ContextFree,Production
+from noom.AST import AST
+
 from GrammarFlow import GrammarFlow
 from Chart import * 
-from AST import AST 
 from Condition import Condition
 
 class Parser():

@@ -1,4 +1,4 @@
-from ContextFree import ContextFree
+from noom.ContextFree import ContextFree
 
 class State:
 	def __init__(self,rule,start):
