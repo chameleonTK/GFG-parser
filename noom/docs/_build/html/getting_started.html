@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting started &mdash; The Noom 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="The Noom 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to The Noom’s documentation!" href="index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to The Noom’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">The Noom 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installing-your-doc-directory">
+<span id="installing-docdir"></span><h2>Installing your doc directory<a class="headerlink" href="#installing-your-doc-directory" title="Permalink to this headline">¶</a></h2>
+<p>You may already have sphinx <a class="reference external" href="http://sphinx.pocoo.org/">sphinx</a>
+installed &#8211; you can check by doing:</p>
+<div class="highlight-python"><div class="highlight"><pre>python -c &#39;import sphinx&#39;
+</pre></div>
+</div>
+<p>If that fails grab the latest version of and install it with:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; sudo easy_install -U Sphinx
+</pre></div>
+</div>
+<p>Now you are ready to build a template for your docs, using
+sphinx-quickstart:</p>
+<div class="highlight-python"><div class="highlight"><pre>&gt; sphinx-quickstart
+</pre></div>
+</div>
+<p>accepting most of the defaults.  I choose &#8220;sampledoc&#8221; as the name of my
+project.  cd into your new directory and check the contents:</p>
+<div class="highlight-python"><div class="highlight"><pre>home:~/tmp/sampledoc&gt; ls
+Makefile      _static         conf.py
+_build                _templates      index.rst
+</pre></div>
+</div>
+<p>The index.rst is the master ReST for your project, but before adding
+anything, let&#8217;s see if we can build some html:</p>
+<div class="highlight-python"><div class="highlight"><pre>make html
+</pre></div>
+</div>
+<p>If you now point your browser to <code class="file docutils literal"><span class="pre">_build/html/index.html</span></code>, you
+should see a basic sphinx site.</p>
+<img alt="_images/basic_screenshot.png" src="_images/basic_screenshot.png" />
+<div class="section" id="fetching-the-data">
+<span id="id2"></span><h3>Fetching the data<a class="headerlink" href="#fetching-the-data" title="Permalink to this headline">¶</a></h3>
+<p>Now we will start to customize out docs.  Grab a couple of files from
+the <a class="reference external" href="https://github.com/matplotlib/sampledoc">web site</a></p>
+<dl class="function">
+<dt id="enumerate">
+<code class="descname">enumerate</code><span class="sig-paren">(</span><em>sequence</em><span class="optional">[</span>, <em>start=0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#enumerate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator that yields tuples of an index and an item of the
+<em>sequence</em>. (And so on.)</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting started</a><ul>
+<li><a class="reference internal" href="#installing-your-doc-directory">Installing your doc directory</a><ul>
+<li><a class="reference internal" href="#fetching-the-data">Fetching the data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to The Noom&#8217;s documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/getting_started.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to The Noom’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">The Noom 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Pakawat Nakwijit.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b2.
+    </div>
+  </body>
+</html>

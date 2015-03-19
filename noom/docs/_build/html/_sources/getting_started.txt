@@ -1,0 +1,56 @@
+.. _getting_started:
+
+
+***************
+Getting started
+***************
+
+.. _installing-docdir:
+
+Installing your doc directory
+=============================
+
+You may already have sphinx `sphinx <http://sphinx.pocoo.org/>`_
+installed -- you can check by doing::
+
+  python -c 'import sphinx'
+
+If that fails grab the latest version of and install it with::
+
+  > sudo easy_install -U Sphinx
+
+Now you are ready to build a template for your docs, using
+sphinx-quickstart::
+
+  > sphinx-quickstart
+
+accepting most of the defaults.  I choose "sampledoc" as the name of my
+project.  cd into your new directory and check the contents::
+
+  home:~/tmp/sampledoc> ls
+  Makefile	_static		conf.py
+  _build		_templates	index.rst
+
+The index.rst is the master ReST for your project, but before adding
+anything, let's see if we can build some html::
+
+  make html
+
+If you now point your browser to :file:`_build/html/index.html`, you
+should see a basic sphinx site.
+
+.. image:: _static/basic_screenshot.png
+
+.. _fetching-the-data:
+
+Fetching the data
+-----------------
+
+Now we will start to customize out docs.  Grab a couple of files from
+the `web site <https://github.com/matplotlib/sampledoc>`_
+
+
+.. py:function:: enumerate(sequence[, start=0])
+
+   Return an iterator that yields tuples of an index and an item of the
+   *sequence*. (And so on.)
