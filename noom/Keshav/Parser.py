@@ -1,4 +1,4 @@
-from noom.ContextFree import ContextFree,Production
+from noom.ContextFree import ContextFree
 from noom.AST import AST
 
 from GrammarFlow import GrammarFlow
@@ -41,7 +41,35 @@ class Parser():
 		if self.debug:
 			print "START : "
 			print "recur",self.start,self.index , " with condition [",start_cond,"]"
-		return self.recur(self.start , start_cond )
+		return self.recur(self.start , start_cond )[0]
+
+
+	def find_cadidate(self,rule,rule_index):
+		cardidate_state = []
+		for s in self.charts[self.index].states:
+			if s.is_completer() and s.rule.isType("pro") and s.rule.ele.left == rule.right[rule_index]:
+
+				if self.debug:
+					print "\t>> cardidate ",s,self.index
+				cardidate_state.append(s)
+
+		return cardidate_state
+
+	def check_condition(self,cardidate_state,right_cond,rule_index):
+		is_ambiguous = 0
+		next_state = None
+		next_cond = None
+		for c in cardidate_state:
+			#Condition.compatible(a,b)
+			a = right_cond[rule_index]
+			b = Condition(c.start,self.index,"==")
+			cond_ = Condition.compatible( a ,b)
+
+			if cond_:
+				is_ambiguous += 1
+				next_state = c
+				next_cond = cond_
+		return is_ambiguous,next_state,next_cond
 
 	def recur(self,state,left_cond):
 
@@ -59,30 +87,15 @@ class Parser():
 					print "terminal " ,rule.right[rule_index], self.charts[self.index-1].token.value
 				#child = AST(rule.right[rule_index])
 				token = self.charts[self.index-1].token
-				child = AST(token.type,token)
+				child = [AST(token.type,token)]
+
 				self.index -=1
+				tree.children.insert(0,child[0])
+				rule_index -=1
+
 			else:
-				cardidate_state = []
-				for s in self.charts[self.index].states:
-					if s.is_completer() and s.rule.isType("pro") and s.rule.ele.left == rule.right[rule_index]:
-
-						if self.debug:
-							print "\t>> cardidate ",s,self.index
-						cardidate_state.append(s)
-
-				is_ambiguous = 0
-				next_state = None
-				next_cond = None
-				for c in cardidate_state:
-					#Condition.compatible(a,b)
-					a = right_cond[rule_index]
-					b = Condition(c.start,self.index,"==")
-					cond_ = Condition.compatible( a ,b)
-
-					if cond_:
-						is_ambiguous += 1
-						next_state = c
-						next_cond = cond_
+				cardidate_state = self.find_cadidate(rule,rule_index)
+				is_ambiguous,next_state,next_cond = self.check_condition(cardidate_state,right_cond,rule_index)
 
 				if is_ambiguous == 1:
 					if self.debug:
@@ -90,10 +103,13 @@ class Parser():
 					child = self.recur(next_state,next_cond)
 					if self.debug:
 						print "end recur"
+					tree.children.insert(0,child[0])
+					rule_index -=1
 				else:
 					raise Exception("ambiguous")
 
-			tree.children.insert(0,child)
-			rule_index -=1		
 					
-		return tree
+					
+		return [tree]
+
+		

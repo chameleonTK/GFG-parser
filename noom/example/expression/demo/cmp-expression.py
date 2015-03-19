@@ -16,13 +16,13 @@ def sem_exp_3(p):
 	return int(p[0].value)
 
 
-import sys
+import sys,os
 from noom.Noom import Noom
 
 
 if __name__ == "__main__":
 
-	E  = Noom("cmp-expression.py","../expression.lex")
+	E  = Noom(os.path.abspath(__file__) ,"/home/tk/Desktop/Senior/noom/example/expression/expression.lex")
 	print "#### THIS GRAMMAR MUST HAVE PARENs IN EVERY OPERATION ####"
 	while True:
 		try:

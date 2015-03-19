@@ -1,4 +1,4 @@
-import sys
+import sys,os
 
 def sem_root_1(p):
 	'root -> program'
@@ -462,7 +462,7 @@ class BASIC:
 
 if __name__ == "__main__":
 
-	E  = Noom("cmp-basic.py","basic.lex")
+	E  = Noom( os.path.abspath(__file__) ,"/home/tk/Desktop/Senior/noom/example/basic/basic.lex")
 	if len(sys.argv) == 2 :
 		f = open(sys.argv[1])
 		cmd = E.run(f.read())

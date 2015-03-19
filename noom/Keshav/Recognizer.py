@@ -1,4 +1,4 @@
-from noom.ContextFree import ContextFree,Production
+from noom.ContextFree import ContextFree
 from GrammarFlow import GrammarFlow
 from Chart import * 
 

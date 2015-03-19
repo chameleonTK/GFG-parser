@@ -41,7 +41,7 @@ class ContextFree:
 		self.lexicon = lex
 
 	@staticmethod
-	def get_production_grammar_file(gram):
+	def get_production_grammar_file(gram,CNF=False):
 		fin = open(gram)
 		start = None
 		production = []
@@ -56,7 +56,7 @@ class ContextFree:
 				production.append( Production(l,rule,None) )
 
 		if start == None:
-			raise Exception("did you forget root symbol?")			
+			raise Exception("did you forget root symbol?")		
 		return production
 
 	def get_production_semantic_file(self,gram):

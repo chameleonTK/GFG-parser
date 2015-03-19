@@ -48,12 +48,12 @@ def sem_state_2(p):
 	return p[1]
 
 
-import sys
+import sys,os
 from noom.Noom import Noom
 
 
 if __name__ == "__main__":
 
-	E  = Noom("cmp-full-expression.py","../expression.lex")
+	E  = Noom(os.path.abspath(__file__),"/home/tk/Desktop/Senior/noom/example/expression/expression.lex")
 	while True:
 		E.run(raw_input("cal > "))

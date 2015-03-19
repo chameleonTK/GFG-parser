@@ -1,41 +1,43 @@
-from noom.ContextFree import ContextFree,Production
+from noom.ContextFree import ContextFree
 		
 class Node:
 	def __init__(self,ele,dot):
 		self.ele = ele
 		self.dot = dot
 
-		if isinstance(self.ele,Production):
-			self.type = ["pro"]
-		else:
+		if isinstance(self.ele,basestring):
 			if self.dot == 0:
 				self.type = ["start"]
 			else:
 				self.type = ["end"]
+		else:
+			self.type = ["pro"]
+			
 
 	def next(self):
-		if isinstance(self.ele,Production):
+		if isinstance(self.ele,basestring):
+			if self.dot == 0:
+				return self.ele
+			else:
+				return None
+		else:
 			if self.dot < len(self.ele.right):
 				return self.ele.right[self.dot]
 			else:
 				return None
 
-		else:
-			if self.dot == 0:
-				return self.ele
-			else:
-				return None
+			
+
 
 	def prev(self):
-		if isinstance(self.ele,Production):
-			if self.dot >= 1:
-				return self.ele.right[self.dot-1]
-			else:
-				return None
-
-		else:
+		if isinstance(self.ele,basestring):
 			if self.dot == 1:
 				return self.ele
+			else:
+				return None
+		else:
+			if self.dot >= 1:
+				return self.ele.right[self.dot-1]
 			else:
 				return None
 
@@ -54,7 +56,12 @@ class Node:
 	@staticmethod
 	def label(ele,dot):
 		#print ele
-		if isinstance(ele,Production):
+		if isinstance(ele,basestring):
+			if dot ==0:
+				return "."+str(ele)+" "
+			else:
+				return str(ele)+". "
+		else:
 			s = ele.left+" -> "
 			for i in range(len(ele.right)):
 				if i==dot:
@@ -64,12 +71,6 @@ class Node:
 			if len(ele.right)==dot:
 				s+=". "
 			return s
-
-		else:
-			if dot ==0:
-				return "."+str(ele)+" "
-			else:
-				return str(ele)+". "
         
 class Edge:
 	def __init__(self,nodeA,nodeB,label=None):
@@ -111,6 +112,7 @@ class GrammarFlow:
 				self.addEdge(exit)
 
 				for i in range(len(prod.right)):
+
 					if ContextFree.isTerminal(prod.right[i]):
 						scan = Edge(self.node[Node.label(prod,i)],self.node[Node.label(prod,i+1)],prod.right[i])
 						self.addEdge(scan)
