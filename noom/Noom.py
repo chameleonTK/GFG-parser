@@ -27,9 +27,7 @@ class Noom:
 			self.pars = Keshav.Parser.Parser(GFG,False)
 
 		elif mode == "Earley":
-			self.recg = Earley.Recognizer.Recognizer()
-			print "**************** not implement *****************"
-
+			self.recg = Earley.Recognizer.Recognizer(self.grammar,False)
 		elif mode == "CYK":
 			CNF = G.toCNF()
 			self.recg = CYK.Recognizer.Recognizer(CNF,False)
@@ -122,7 +120,7 @@ if __name__ == "__main__":
 		code = f.read().strip()
 		f.close()
 		algorithms = ["Keshav","Earley","CYK"]
-		#algorithms = ["CYK"]
+		#algorithms = ["Keshav","Earley"]
 		n = 100
 		print n," times to recognize"
 		for alg in algorithms:

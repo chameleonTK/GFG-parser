@@ -50,6 +50,7 @@ class ContextFree:
 				if start != None:
 					raise Exception("too Many root symbol")			
 				start = 'root'
+				
 			for rule in r.split("|"):
 				production.append( Production(l,rule,None) )
 
