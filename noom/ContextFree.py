@@ -5,10 +5,10 @@ import imp
 class Production:
 	def __init__(self,l,r,action):
 		l = l.strip()
-		r = r.strip().split(" ")
+		r = r.strip()
 
 		self.left = l
-		self.right = r
+		self.right = r.split(" ")
 		self.action = action
 
 	def isEpsilon(self):
@@ -23,8 +23,6 @@ class Production:
 		
 	def __str__(self):
 		return self.left+" -> "+" ".join(self.right)
-
-
 
 class ContextFree:
 	def __init__(self,gram,lex):

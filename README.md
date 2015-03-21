@@ -87,3 +87,10 @@ def t_error(t):
 
 
 * modify your compiler 
+
+--------------------------
+
+
+# Learn More #
+
+* [Documentation](http://www.noom.curve.in.th)

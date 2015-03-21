@@ -1,0 +1,4 @@
+root -> a b | b c
+a -> b a | A
+b -> c c | B
+c -> a b | A

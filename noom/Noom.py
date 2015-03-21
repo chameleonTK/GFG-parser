@@ -121,9 +121,9 @@ if __name__ == "__main__":
 		f = open(args.benmark)
 		code = f.read().strip()
 		f.close()
-		#algorithms = ["Keshav","Earley","CYK"]
-		algorithms = ["CYK"]
-		n = 1
+		algorithms = ["Keshav","Earley","CYK"]
+		#algorithms = ["CYK"]
+		n = 100
 		print n," times to recognize"
 		for alg in algorithms:
 			setup_statement = "from noom.Noom import Noom;"+'E = Noom("'+output_file+'","'+args.lexicon+'",mode="'+alg+'")'		
