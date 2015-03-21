@@ -138,6 +138,9 @@ class GrammarFlow:
 			self.edge[s] = {}
 			self.edge[s][t] = edge
 
+	def isToken(self,a,b):
+		return self.grammar.isToken(a,b)
+		
 	def __str__(self):
 
 		s=""

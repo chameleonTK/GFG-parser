@@ -1,4 +1,3 @@
-from noom.ContextFree import ContextFree
 from GrammarFlow import GrammarFlow
 from Chart import * 
 
@@ -65,7 +64,7 @@ class Recognizer():
 		if j >= len(self.token):
 			return False
 
-		if self.GFG.grammar.isToken(state.next,self.token[j]):
+		if self.GFG.isToken(state.next,self.token[j]):
 			for next in self.GFG.edge[str(state.rule)]:
 				node = self.GFG.edge[str(state.rule)][next].end
 

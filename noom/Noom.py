@@ -3,11 +3,10 @@
 import os
 import argparse
 from ContextFree import ContextFree,Production
-import Keshav.GrammarFlow
+from GrammarTranform import GrammarTranform
+
 import Keshav.Recognizer
 import Keshav.Parser
-
-
 import Earley.Recognizer
 import CYK.Recognizer
 
@@ -20,9 +19,10 @@ class Noom:
 
 		self.tokenizer = Tokenizer(lex_path)
 		self.grammar = ContextFree(grammar_path,self.tokenizer)
-		
+		G = GrammarTranform(self.grammar)
+
 		if mode == "Keshav":
-			GFG = Keshav.GrammarFlow.GrammarFlow(self.grammar)
+			GFG = G.toGFG()
 			self.recg = Keshav.Recognizer.Recognizer(GFG,False)
 			self.pars = Keshav.Parser.Parser(GFG,False)
 
@@ -31,8 +31,8 @@ class Noom:
 			print "**************** not implement *****************"
 
 		elif mode == "CYK":
-			self.recg = CYK.Recognizer.Recognizer()
-			print "**************** not implement *****************"
+			CNF = G.toCNF()
+			self.recg = CYK.Recognizer.Recognizer(CNF,False)
 
 		else:
 			raise Exception("What? What Algorithm do you want?")
@@ -119,13 +119,14 @@ if __name__ == "__main__":
 
 	if args.benmark:
 		f = open(args.benmark)
-		code = f.read()
+		code = f.read().strip()
 		f.close()
-		algorithms = ["Keshav","Earley","CYK"]
-		n = 100
+		#algorithms = ["Keshav","Earley","CYK"]
+		algorithms = ["CYK"]
+		n = 1
 		print n," times to recognize"
 		for alg in algorithms:
-			setup_statement = "from noom.Noom import Noom;"+'E = Noom("'+output_file+'","'+args.lexicon+'",mode="'+alg+'")'
+			setup_statement = "from noom.Noom import Noom;"+'E = Noom("'+output_file+'","'+args.lexicon+'",mode="'+alg+'")'		
 			t = timeit.timeit("E.benmark('"+code+"')",setup=setup_statement,number=n)
 			print "Algorithm : " , alg  ," : ",t," us"
 
