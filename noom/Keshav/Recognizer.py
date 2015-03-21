@@ -14,7 +14,8 @@ class Recognizer():
 			if self.debug:
 				print " =========",i,"========== "
 
-			for state in self.charts[i].states:
+			state = self.charts[i].next()
+			while state is not None:
 				if self.debug:
 					print "\t",state
 
@@ -24,6 +25,8 @@ class Recognizer():
 					self.completer(state,i);
 				else:
 					self.predictor(state,i);
+
+				state = self.charts[i].next()
 
 			i+=1
 

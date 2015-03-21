@@ -24,13 +24,16 @@ class State:
 	def __str__(self):
 		return str(self.rule)+"["+str(self.start)+"]"
 
+	def __hash__(self):
+		return hash(str(self))
 
 class Chart:
 	def __init__(self , index ,token , debug = False):
-		self.states = []
+		self.states = set()
 		self.index = index
 		self.debug = debug
 		self.token = token
+		self.queue = []
 
 	def __str__(self):
 		s = " ========= "+str(self.index)+" ========== \n"
@@ -38,13 +41,25 @@ class Chart:
 			s+= "\t"+str(state)+"\n"
 		return s
 
+	def next(self):
+		if len(self.queue) <= 0:
+			return None
+		return self.queue.pop(0)
+
+
 	def add_state(self, state):
-		if not state in self.states:
-			self.states.append(state)
+		len_prev = len(self.states)
+		self.states.add(state)
+		if len_prev != len(self.states):
+			self.queue.append(state)
+			
+		#if not state in self.states:
 			#if self.debug:
 				#print "\t",state,"[",state.start,",",self.index,"]"
 		#else:
 		#	print "BOO",state.start
+
+		
 
 	
 

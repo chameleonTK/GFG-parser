@@ -4,15 +4,16 @@ class Node:
 	def __init__(self,ele,dot):
 		self.ele = ele
 		self.dot = dot
-
+		self.type = set()
 		if isinstance(self.ele,basestring):
 			if self.dot == 0:
-				self.type = ["start"]
+				self.type.add("start")
 			else:
-				self.type = ["end"]
+				self.type.add("end")
 		else:
-			self.type = ["pro"]
-			
+			self.type.add("pro")
+
+		self.key = Node.label(self.ele,self.dot)
 
 	def next(self):
 		if isinstance(self.ele,basestring):
@@ -25,9 +26,6 @@ class Node:
 				return self.ele.right[self.dot]
 			else:
 				return None
-
-			
-
 
 	def prev(self):
 		if isinstance(self.ele,basestring):
@@ -46,7 +44,7 @@ class Node:
 		return (tp in self.type)
 		
 	def __str__(self):
-		return Node.label(self.ele,self.dot)
+		return self.key
 
 	def __cmp__(self,s):
 		if str(self) == str(s):
