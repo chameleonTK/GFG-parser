@@ -14,6 +14,7 @@ class Node:
 			self.type.add("pro")
 
 		self.key = Node.label(self.ele,self.dot)
+		self.edgeTo = set()
 
 	def next(self):
 		if isinstance(self.ele,basestring):
@@ -50,6 +51,9 @@ class Node:
 		if str(self) == str(s):
 			return 0
 		return -1
+
+	def __hash__(self):
+		return hash(self.key)
 		
 	@staticmethod
 	def label(ele,dot):
@@ -69,7 +73,7 @@ class Node:
 			if len(ele.right)==dot:
 				s+=". "
 			return s
-        
+'''
 class Edge:
 	def __init__(self,nodeA,nodeB,label=None):
 		self.start = nodeA
@@ -81,13 +85,13 @@ class Edge:
 			return "("+str(self.start)+" , "+str(self.end)+")"
 		else:
 			return "("+str(self.start)+" , "+str(self.end)+") with "+self.label
+'''
 
 class GrammarFlow:
 	def __init__(self,grammar):
 		self.grammar = grammar
 		
 		self.node = {}
-		self.edge = {}
 
 		for non in self.grammar.nonterminal:
 			start = Node(non,0)
@@ -102,39 +106,26 @@ class GrammarFlow:
 				for i in range(len(prod.right)+1):
 					n = Node(prod,i)
 					self.node[str(n)] = n
+				#entry
+				self.node[Node.label(prod.left,0)].edgeTo.add( self.node[Node.label(prod,0)])
 
-				entry = Edge(self.node[Node.label(prod.left,0)],self.node[Node.label(prod,0)])
-				self.addEdge(entry)
-
-				exit = Edge(self.node[Node.label(prod,len(prod.right))],self.node[Node.label(prod.left,1)])
-				self.addEdge(exit)
+				#exit
+				self.node[Node.label(prod,len(prod.right))].edgeTo.add( self.node[Node.label(prod.left,1)] )
 
 				for i in range(len(prod.right)):
 
 					if ContextFree.isTerminal(prod.right[i]):
-						scan = Edge(self.node[Node.label(prod,i)],self.node[Node.label(prod,i+1)],prod.right[i])
-						self.addEdge(scan)
+						# scan with label : prod.right[i]
+						self.node[Node.label(prod,i)].edgeTo.add( self.node[Node.label(prod,i+1)] )
 						
 					if ContextFree.isNonTerminal(prod.right[i]):
-						call = Edge(self.node[Node.label(prod,i)],self.node[Node.label(prod.right[i],0)])
-						retn = Edge(self.node[Node.label(prod.right[i],1)],self.node[Node.label(prod,i+1)])
-				
-						self.addEdge(call)
-						self.addEdge(retn)
+						#call
+						self.node[Node.label(prod,i)].edgeTo.add( self.node[Node.label(prod.right[i],0)] )
+						#return
+						self.node[Node.label(prod.right[i],1)].edgeTo.add(self.node[Node.label(prod,i+1)])
 
 		self.start = self.node[Node.label(grammar.start,0)]
 		self.final = self.node[Node.label(grammar.start,1)]
-
-	def addEdge(self,edge):
-		s = str(edge.start)
-		t = str(edge.end)
-	
-		if self.edge.has_key(s):
-			if not self.edge[s].has_key(t):
-				self.edge[s][t] = edge
-		else:
-			self.edge[s] = {}
-			self.edge[s][t] = edge
 
 	def isToken(self,a,b):
 		return self.grammar.isToken(a,b)
