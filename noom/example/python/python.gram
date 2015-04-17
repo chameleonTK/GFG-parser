@@ -1,0 +1,39 @@
+root -> single_input
+single_input -> NEWLINE | simple_stmt | compound_stmt | compound_stmt NEWLINE
+simple_stmt -> small_stmts NEWLINE 
+simple_stmt -> small_stmts SEMICOLON NEWLINE
+small_stmts -> small_stmts SEMICOLON small_stmt | small_stmt
+small_stmt -> flow_stmt | expr_stmt | print_stmt
+expr_stmt -> testlist ASSIGN testlist | testlist
+print_stmt -> PRINT tests
+flow_stmt -> return_stmt | break_stmt | continue_stmt
+break_stmt -> BREAK
+continue_stmt -> CONTINUE
+return_stmt -> RETURN testlist
+compound_stmt -> if_stmt | funcdef | while_stmt
+if_stmt -> IF test COLON suite
+if_stmt -> IF test COLON suite ELSE COLON suite
+while_stmt -> WHILE test COLON suite
+funcdef -> DEF NAME parameters COLON suite
+parameters -> LPAR RPAR | LPAR varargslist RPAR
+varargslist -> varargslist COMMA NAME | NAME
+suite -> simple_stmt | NEWLINE INDENT stmts DEDENT
+stmts -> stmts stmt | stmt
+stmt -> simple_stmt
+stmt -> compound_stmt
+test -> expr | relexpr
+expr -> expr PLUS term | expr MINUS term | term
+term -> term MULT factor | term DIV factor | term MOD factor | factor
+factor -> PLUS factor | MINUS factor | power
+power -> atom | atom trailer
+atom -> NAME
+atom -> NUMBER | STRING
+atom -> LPAR testlist RPAR
+trailer -> LPAR arglist RPAR
+relexpr -> expr LT expr | expr LE expr | expr GT expr | expr GE expr 
+relexpr -> expr EQ expr | expr NE expr
+testlist -> testlist_multi COMMA | testlist_multi 
+testlist_multi -> testlist_multi COMMA test | test
+arglist -> arglist COMMA argument | argument
+argument -> test
+tests -> tests COMMA test | test

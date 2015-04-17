@@ -27,7 +27,7 @@ dimlist -> dimlist COMMA dimitem | dimitem
 dimitem -> ID LPAREN INTEGER RPAREN
 dimitem -> ID LPAREN INTEGER COMMA INTEGER RPAREN
 expr -> expr PLUS term | expr MINUS term | term
-term -> term TIMES expo | term DIVIDE expo | expo
+term -> term TIMES expo | term DIVIDE expo | term MOD expo | expo
 expo -> base POWER expo | base
 base -> number | LPAREN expr RPAREN | variable
 relexpr -> expr LT expr | expr LE expr | expr GT expr | expr GE expr 
