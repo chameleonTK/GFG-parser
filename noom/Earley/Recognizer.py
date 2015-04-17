@@ -5,6 +5,7 @@ class Recognizer():
 	def __init__(self,grammar,debug=False):
 		self.grammar = grammar
 		self.debug = debug
+		#print "GRAMMAR SIZE : ",len(self.grammar.production)
 
 	def recognize(self,token):
 

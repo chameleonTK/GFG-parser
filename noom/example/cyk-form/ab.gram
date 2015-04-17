@@ -1,0 +1,3 @@
+root -> a b
+a -> A a a | EPSILON
+b -> B b b | EPSILON

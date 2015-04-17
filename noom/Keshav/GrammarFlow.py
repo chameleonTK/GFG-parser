@@ -1,5 +1,3 @@
-from noom.ContextFree import ContextFree
-		
 class Node:
 	def __init__(self,ele,dot):
 		self.ele = ele
@@ -114,11 +112,11 @@ class GrammarFlow:
 
 				for i in range(len(prod.right)):
 
-					if ContextFree.isTerminal(prod.right[i]):
+					if self.grammar.isTerminal(prod.right[i]):
 						# scan with label : prod.right[i]
 						self.node[Node.label(prod,i)].edgeTo.add( self.node[Node.label(prod,i+1)] )
 						
-					if ContextFree.isNonTerminal(prod.right[i]):
+					if self.grammar.isNonTerminal(prod.right[i]):
 						#call
 						self.node[Node.label(prod,i)].edgeTo.add( self.node[Node.label(prod.right[i],0)] )
 						#return

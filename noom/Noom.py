@@ -2,8 +2,7 @@
 
 import os
 import argparse
-from ContextFree import ContextFree,Production
-from GrammarTranform import GrammarTranform
+from ContextFree import ContextFree
 
 import Keshav.Recognizer
 import Keshav.Parser
@@ -15,21 +14,21 @@ import timeit
 from Tokenizer import Tokenizer
 
 class Noom:
-	def __init__(self,grammar_path,lex_path, mode="Keshav"):
+	def __init__(self,grammar_path,lex_path, mode="Keshav" , debug=False):
 
 		self.tokenizer = Tokenizer(lex_path)
 		self.grammar = ContextFree(grammar_path,self.tokenizer)
-		G = GrammarTranform(self.grammar)
 
 		if mode == "Keshav":
-			GFG = G.toGFG()
+			GFG = self.grammar.toGFG()
 			self.recg = Keshav.Recognizer.Recognizer(GFG,False)
 			self.pars = Keshav.Parser.Parser(GFG,False)
 
 		elif mode == "Earley":
 			self.recg = Earley.Recognizer.Recognizer(self.grammar,False)
+			
 		elif mode == "CYK":
-			CNF = G.toCNF()
+			CNF = self.grammar.toCNF()
 			self.recg = CYK.Recognizer.Recognizer(CNF,False)
 
 		else:
@@ -121,12 +120,25 @@ if __name__ == "__main__":
 		f.close()
 		algorithms = ["Keshav","Earley","CYK"]
 		#algorithms = ["Keshav","Earley"]
-		n = 100
+		#algorithms = ["Earley"]
+		n = 10
+		
+		'''
 		print n," times to recognize"
+
+		for a in algorithms:
+			print a," : ",
+		print ""
+		'''
+
 		for alg in algorithms:
 			setup_statement = "from noom.Noom import Noom;"+'E = Noom("'+output_file+'","'+args.lexicon+'",mode="'+alg+'")'		
 			t = timeit.timeit("E.benmark('"+code+"')",setup=setup_statement,number=n)
-			print "Algorithm : " , alg  ," : ",t," us"
+
+			#print "Algorithm : " , alg  ," : ",t," s"
+			print t," : ",
+		print ""
+
 
 	else:
 		create_compiler_file(args,output_file)

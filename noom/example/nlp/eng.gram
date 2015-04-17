@@ -1,0 +1,11 @@
+root -> s
+s -> np vp
+vp -> ADV vp
+vp -> VERB
+vp -> VERB np
+np -> DET nom
+nom -> ADJ nom
+nom -> NOUN nom
+nom -> NOUN
+nom -> NOUN pp
+pp -> PREP nom

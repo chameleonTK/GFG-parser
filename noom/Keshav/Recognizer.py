@@ -5,6 +5,7 @@ class Recognizer():
 	def __init__(self,GFG,debug = False):
 		self.GFG = GFG
 		self.debug = debug
+		#print "GRAMMAR SIZE : ",len(self.GFG.node)
 
 	def recognize(self,token):
 		i=0

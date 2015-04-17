@@ -1,4 +1,3 @@
-from noom.ContextFree import ContextFree
 from noom.AST import AST
 
 from GrammarFlow import GrammarFlow
@@ -8,19 +7,20 @@ from Condition import Condition
 class Parser():
 	def __init__(self,GFG,debug = False):
 		self.GFG = GFG
+		self.grammar = self.GFG.grammar
 		self.debug = debug
 		self.multiple = True
 
 	def semantic(self,AST):		
 		p = []
 		for ch in AST.children:
-			if ContextFree.isTerminal(ch.ele):
+			if self.grammar.isTerminal(ch.ele):
 				p.append(ch.ref)
 			else:
 				s = self.semantic(ch)
 				p.append(s)
 
-		if not ContextFree.isTerminal(AST.ele):
+		if not self.grammar.isTerminal(AST.ele):
 			return AST.ref.action(p)
 		return p
 
@@ -82,7 +82,7 @@ class Parser():
 
 		while rule_index >= 0 :
 			child = None
-			if ContextFree.isTerminal(rule.right[rule_index]):
+			if self.grammar.isTerminal(rule.right[rule_index]):
 				if self.debug:
 					print "terminal " ,rule.right[rule_index], self.charts[self.index-1].token.value
 				#child = AST(rule.right[rule_index])

@@ -11,10 +11,10 @@ class State:
 		return not( self.is_scanner() or self.is_completer() )
 
 	def is_scanner(self):
-		return self.next!=None and ContextFree.isTerminal(self.next)
+		return (self.next is not None) and ContextFree.isTerminal(self.next)
 
 	def is_completer(self):
-		return self.next==None
+		return self.next is None
 
 	def __cmp__(self,s):
 		if self.rule == s.rule and self.start == s.start :

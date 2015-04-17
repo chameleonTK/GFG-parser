@@ -11,6 +11,8 @@ class Tokenizer:
 		obj = imp.load_source("*", self.lexicon)
 		self.tokens = obj.tokens
 		self.lexer = lex.lex(module=obj, **kwargs)
+		self.obj = obj
+		
 	
 	# Test it output
 	def __init__(self,lexicon):

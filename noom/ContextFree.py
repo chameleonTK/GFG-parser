@@ -1,32 +1,10 @@
-import re
-import types
-import imp
+from GrammarTranform import GrammarTranform
+from Production import Production
+import re, types, imp
 
-class Production:
-	def __init__(self,l,r,action):
-		l = l.strip()
-		r = r.strip()
-
-		self.left = l
-		self.right = r.split(" ")
-		self.action = action
-
-	def isEpsilon(self):
-		if len(self.right)==1 and self.right[0]=="EPSILON":
-			return True
-		return False
-	
-	def __cmp__(self,s):
-		if str(self) == str(s):
-			return 0
-		return -1
-		
-	def __str__(self):
-		return self.left+" -> "+" ".join(self.right)
 
 class ContextFree:
 	def __init__(self,gram,lex):
-		
 		self.nonterminal = set()
 		self.terminal = set()
 		for t in lex.tokens:
@@ -35,11 +13,16 @@ class ContextFree:
 		self.production = []
 		self.start = None
 		self.get_production_semantic_file(gram)
-
 		self.lexicon = lex
 
+	def toCNF(self):
+		return GrammarTranform.toCNF(self)
+
+	def toGFG(self):
+		return GrammarTranform.toGFG(self)
+
 	@staticmethod
-	def get_production_grammar_file(gram,CNF=False):
+	def get_production_grammar_file(gram):
 		fin = open(gram)
 		start = None
 		production = []
@@ -61,7 +44,7 @@ class ContextFree:
 	def get_production_semantic_file(self,gram):
 		mod = imp.load_source("*", gram)
 		for x in dir(mod):
-			if "sem_" not in x:
+			if not x.startswith("sem_"):
 				continue
 				
 			obj = getattr(mod,x)
@@ -92,6 +75,13 @@ class ContextFree:
 		for rule in self.production:
 			s+= str(rule)+"\n"
 		return s
+
+	def isTerminal(self,s):
+		return ContextFree.isTerminal(s)
+
+	def isNonTerminal(self,s):
+		return ContextFree.isNonTerminal(s)
+
 
 	@staticmethod
 	def isTerminal(s):

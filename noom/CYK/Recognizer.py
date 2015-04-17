@@ -25,8 +25,10 @@ class Recognizer:
 		self.CNF = CNF
 		self.debug = debug
 		self.index = self.indexing()
+		#print "GRAMMAR SIZE : ",len(self.CNF.production)
 
 	def recognize(self,token):
+
 		self.token = token
 		self.triTable = Tritable(len(self.token))
 		self.n = len(token)
@@ -67,9 +69,6 @@ class Recognizer:
 			for b in B:
 				ret.add(a+b)
 		return ret
-		
-
-		return "XX"
 
 	def indexing(self):
 		index = {}
@@ -82,5 +81,4 @@ class Recognizer:
 				index[key].append(p)
 			else:
 				index[key] = [p]
-
 		return index
