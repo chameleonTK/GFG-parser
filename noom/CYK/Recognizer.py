@@ -25,7 +25,7 @@ class Recognizer:
 		self.CNF = CNF
 		self.debug = debug
 		self.index = self.indexing()
-		#print "GRAMMAR SIZE : ",len(self.CNF.production)
+		self.size = len(self.CNF.production)
 
 	def recognize(self,token):
 
