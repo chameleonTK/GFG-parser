@@ -5,6 +5,7 @@ tokens = (
    'MINUS',
    'TIMES',
    'DIVIDE',
+   'POW',
    'LPAREN',
    'RPAREN',
 )
@@ -16,6 +17,7 @@ t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
+t_POW  = r'\^'
 
 # A regular expression rule with some action code
 def t_NUMBER(t):

@@ -11,9 +11,13 @@ from Tokenizer import Tokenizer
 
 
 class Benchmark:
-	def __init__(self,grammar, lexicon, prefix, count):
+	def __init__(self,grammar, lexicon, prefix, count,nocyk=True):
 
-		self.algorithms = ["Keshav","Earley","CYK"]
+		if nocyk:
+			self.algorithms = ["Keshav","Earley"]
+		else:
+			self.algorithms = ["Keshav","Earley","CYK"]
+			
 		self.output_file = os.path.abspath(".")+"/compiler.py"
 		self.lexicon = lexicon
 		self.prefix = prefix
@@ -96,13 +100,14 @@ if __name__ == "__main__":
 	parser.add_argument("count", type=int,help="Number of input file")
 
 	parser.add_argument("-n","--no-head", help="Show detail of benchmark ",action="store_true")
+	parser.add_argument("--no-cyk", help="Skip CYK ",action="store_true")
 	parser.add_argument("--time", help="Measure execution time",action="store_true")
 	parser.add_argument("--memory", help="Measure memory usage ",action="store_true")
 
 	args = parser.parse_args()
 	args.lexicon = os.path.abspath(args.lexicon)
 
-	bench = Benchmark(args.grammar, args.lexicon , args.input , args.count)
+	bench = Benchmark(args.grammar, args.lexicon , args.input , args.count,nocyk=args.no_cyk)
 
 	if not args.no_head:
 

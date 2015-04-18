@@ -1,0 +1,15 @@
+root -> s
+s -> NUMBER | open exprclose | factor powopprimary | term mulopfactor | expr addopterm | addop term
+expr -> NUMBER | open exprclose | factor powopprimary | term mulopfactor | expr addopterm | addop term
+term -> NUMBER | open exprclose | factor powopprimary | term mulopfactor
+factor -> NUMBER | open exprclose | factor powopprimary
+primary -> NUMBER | open exprclose
+addop -> PLUS | MINUS
+mulop -> TIMES | DIVIDE
+exprclose -> expr close
+powopprimary -> powop primary
+mulopfactor -> mulop factor
+addopterm -> addop term
+open -> LPAREN
+close -> RPAREN
+powop -> POW

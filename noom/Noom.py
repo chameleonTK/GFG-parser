@@ -18,7 +18,8 @@ class Noom:
 
 		self.tokenizer = Tokenizer(lex_path)
 		self.grammar = ContextFree(grammar_path,self.tokenizer)
-
+		self.mode = mode
+		
 		if mode == "Keshav":
 			GFG = self.grammar.toGFG()
 			self.recg = Keshav.Recognizer.Recognizer(GFG,False)
@@ -46,9 +47,13 @@ class Noom:
 		self.AST = self.parse(charts)
 		return self.pars.semantic(self.AST)
 
-	def benmark(self,code):
+	def benchmark(self,code):
 		token = self.tokenizer.tokenize(code)
 		self.recognize(token)
+
+	def getSize(self):
+		return self.recg.size
+
 
 	@staticmethod
 	def set_semantic_file(productions,semantic_path):
@@ -96,9 +101,6 @@ if __name__ == "__main__":
 	parser.add_argument("grammar", type=str,
                     help="path to grammar file")
 
-	parser.add_argument("-b", "--benmark",type=str,
-                    help="benmark [with other parsing algorithm] mode")
-
 	args = parser.parse_args()
 	
 	output_file = ""
@@ -114,33 +116,6 @@ if __name__ == "__main__":
 	productions = ContextFree.get_production_grammar_file(args.grammar)
 	Noom.set_semantic_file(productions,output_file)
 
-	if args.benmark:
-		f = open(args.benmark)
-		code = f.read().strip()
-		f.close()
-		algorithms = ["Keshav","Earley","CYK"]
-		#algorithms = ["Keshav","Earley"]
-		#algorithms = ["Earley"]
-		n = 10
-		
-		'''
-		print n," times to recognize"
-
-		for a in algorithms:
-			print a," : ",
-		print ""
-		'''
-
-		for alg in algorithms:
-			setup_statement = "from noom.Noom import Noom;"+'E = Noom("'+output_file+'","'+args.lexicon+'",mode="'+alg+'")'		
-			t = timeit.timeit("E.benmark('"+code+"')",setup=setup_statement,number=n)
-
-			#print "Algorithm : " , alg  ," : ",t," s"
-			print t," : ",
-		print ""
-
-
-	else:
-		create_compiler_file(args,output_file)
+	create_compiler_file(args,output_file)
 
 	
