@@ -8,7 +8,7 @@ import Keshav.Recognizer
 import Keshav.Parser
 import Earley.Recognizer
 import CYK.Recognizer
-
+import sys
 import timeit
 
 from Tokenizer import Tokenizer
@@ -41,14 +41,17 @@ class Noom:
 	def parse(self,charts):
 		return self.pars.parse(charts)
 
+	def tokenize(self,code):
+		return self.tokenizer.tokenize(code)
+
 	def run(self,code):
-		token = self.tokenizer.tokenize(code)
+		token = self.tokenize(code)
 		charts = self.recognize(token)
 		self.AST = self.parse(charts)
 		return self.pars.semantic(self.AST)
 
 	def benchmark(self,code):
-		token = self.tokenizer.tokenize(code)
+		token = self.tokenize(code)
 		self.recognize(token)
 
 	def getSize(self):

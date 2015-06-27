@@ -42,7 +42,7 @@ class Benchmark:
 		s += "\tf = open(sys.argv[2])\n"
 		s += "\tE.benchmark(f.read())\n"
 		s += "\tf.close()\n"
-		s += "\ttime.sleep(1)\n"
+		s += "\ttime.sleep(0.5)\n"
 		f.write(s)	
 
 	def setup(self):
