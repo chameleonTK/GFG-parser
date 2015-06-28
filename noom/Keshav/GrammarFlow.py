@@ -132,6 +132,7 @@ class GrammarFlow:
 
 		s=""
 		mark = {}
+
 		for k in self.node.keys():
 			mark[k]=False
 
@@ -140,17 +141,17 @@ class GrammarFlow:
 
 		nMark = 0
 		while len(queue) > 0:
-			focus = queue.pop(0)
+			nodeLabel = queue.pop(0)
 			nMark +=1
-			s += focus+"\n"
+			s += nodeLabel+"\n"
 
-			if self.edge.has_key(focus):			
-				for k in self.edge[focus].keys():
+			for child in self.node[nodeLabel].edgeTo:
+					k = str(child)
 					if not mark[k]:
 						mark[k] = True
 						queue.append(k)
 
-					s+= " >>>> "+str(self.edge[focus][k]) +"\n"
+					s+= " >>>> "+str(child) +"\n"
 			s+="\n"
 			
 		return s

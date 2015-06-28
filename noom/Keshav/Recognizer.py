@@ -34,7 +34,6 @@ class Recognizer():
 		
 		if self.fin is None:
 			raise Exception("The input is not in this grammar")
-		
 		return self.charts
 
 	def  init(self,token):
@@ -45,15 +44,12 @@ class Recognizer():
 		if self.debug:
 			print "Initial"
 
-		s = State(self.GFG.start ,0)
+		s = State(self.GFG.start ,0,None)
 		self.charts[0].add_state(s)
 				
-				
-
-	
 	def predictor(self,state,j):
 		for node in state.rule.edgeTo:
-			s = State(node,j)
+			s = State(node,j,state.track)
 			self.charts[j].add_state(s)
 
 	
@@ -63,7 +59,7 @@ class Recognizer():
 
 		if self.GFG.isToken(state.next,self.token[j]):
 			for node in state.rule.edgeTo:
-				s = State(node,state.start)
+				s = State(node,state.start,state.track)
 				self.charts[j+1].add_state(s)
 			
 	
@@ -78,15 +74,13 @@ class Recognizer():
 				if st.next == state.rule.ele:
 					for node in state.rule.edgeTo:
 						if node.ele == st.rule.ele and node.dot == st.rule.dot+1 :
-
-							s = State(node,st.start)
+							s = State(node,st.start,state.track)
 							self.charts[j].add_state(s)
 				
 		else:
 			for node in state.rule.edgeTo:
-				s = State(node,state.start)
+				s = State(node,state.start,state.track)
 				self.charts[j].add_state(s)
-
 				if j == len(self.charts)-1 and state.start == 0 and node == self.GFG.final :
 					self.fin = s
 

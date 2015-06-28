@@ -1,12 +1,18 @@
 from noom.ContextFree import ContextFree
-
+from Track import Track
 class State:
-	def __init__(self,rule,start):
+	def __init__(self,rule,start,track):
 		self.rule = rule
 		self.start = start
 		self.next = self.rule.next()
 		self.prev = self.rule.prev()
+		self.track = None
+		self.set_parent(track)
+		
 	
+	def set_parent(self,track):
+		self.track = Track(track,self)
+		
 	def is_predictor(self):
 		return not( self.is_scanner() or self.is_completer() )
 
