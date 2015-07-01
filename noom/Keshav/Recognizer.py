@@ -30,11 +30,14 @@ class Recognizer():
 
 				state = self.charts[i].next()
 
+			# for s in self.charts[i].states:
+			# 	print s,i
+			# raw_input()
 			i+=1
 		
 		if self.fin is None:
 			raise Exception("The input is not in this grammar")
-		return self.charts
+		return self.charts,self.fin
 
 	def  init(self,token):
 		self.token = token
@@ -72,10 +75,13 @@ class Recognizer():
 					continue
 				
 				if st.next == state.rule.ele:
-					for node in state.rule.edgeTo:
-						if node.ele == st.rule.ele and node.dot == st.rule.dot+1 :
-							s = State(node,st.start,state.track)
-							self.charts[j].add_state(s)
+					s = State( st.rule.returnNode,st.start,state.track)
+					self.charts[j].add_state(s)
+
+					# for node in state.rule.edgeTo:
+					# 	if node.ele == st.rule.ele and node.dot == st.rule.dot+1 :
+					# 		s = State(node,st.start,state.track)
+					# 		self.charts[j].add_state(s)
 				
 		else:
 			for node in state.rule.edgeTo:

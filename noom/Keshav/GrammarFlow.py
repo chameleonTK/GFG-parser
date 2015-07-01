@@ -13,7 +13,11 @@ class Node:
 
 		self.key = Node.label(self.ele,self.dot)
 		self.edgeTo = set()
+		self.returnNode = None
 
+	def add_return(self,node):
+		self.returnNode = node
+		
 	def next(self):
 		if isinstance(self.ele,basestring):
 			if self.dot == 0:
@@ -121,6 +125,7 @@ class GrammarFlow:
 						self.node[Node.label(prod,i)].edgeTo.add( self.node[Node.label(prod.right[i],0)] )
 						#return
 						self.node[Node.label(prod.right[i],1)].edgeTo.add(self.node[Node.label(prod,i+1)])
+						self.node[Node.label(prod,i)].add_return( self.node[Node.label(prod,i+1)] )
 
 		self.start = self.node[Node.label(grammar.start,0)]
 		self.final = self.node[Node.label(grammar.start,1)]

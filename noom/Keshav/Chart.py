@@ -58,6 +58,16 @@ class Chart:
 		self.states.add(state)
 		if len_prev != len(self.states):
 			self.queue.append(state)
+		# else:
+		# 	for s in self.states:
+		# 		if s==state:
+		# 			#print s.track
+		# 			break
+		# 	#print " --------differ---------"
+		# 	#print state.track
+
+
+
 			
 		#if not state in self.states:
 			#if self.debug:
