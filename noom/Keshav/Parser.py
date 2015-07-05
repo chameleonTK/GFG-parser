@@ -11,105 +11,78 @@ class Parser():
 		self.debug = debug
 		self.multiple = True
 
-	def semantic(self,AST):		
+	def semantic(self,ast):		
 		p = []
-		for ch in AST.children:
+		for ch in ast.children:
 			if self.grammar.isTerminal(ch.ele):
 				p.append(ch.ref)
 			else:
 				s = self.semantic(ch)
 				p.append(s)
 
-		if not self.grammar.isTerminal(AST.ele):
-			return AST.ref.action(p)
+		if not self.grammar.isTerminal(ast.ele):
+			return ast.ref.action(p)
 		return p
 
 
-	def parse(self,charts):
-		self.start = None
-		self.charts = charts
-		state = State(self.GFG.final,0)
+	def parse(self,obj):
 		
+		self.charts,self.start = obj
+
 		last_index = len(self.charts)-1
-		for s in self.charts[last_index].states:
-			if s.is_completer() and s.rule.isType("pro") and s.rule.ele.left == state.rule.ele:
-				self.start = s
+		self.seq = []
+		p = self.start.track
+		while p is not None:
+			self.seq.append(p.child)
+			p = p.parent
 
-		self.index = last_index		
-		start_cond = Condition(0,len(self.charts)-1,"==")
+		self.index = 0
+		print self.recur()
 
-		if self.debug:
-			print "START : "
-			print "recur",self.start,self.index , " with condition [",start_cond,"]"
-		return self.recur(self.start , start_cond )[0]
+		raise Exception("stop it")
 
-
-	def find_cadidate(self,rule,rule_index):
-		cardidate_state = []
-		for s in self.charts[self.index].states:
-			if s.is_completer() and s.rule.isType("pro") and s.rule.ele.left == rule.right[rule_index]:
-
-				if self.debug:
-					print "\t>> cardidate ",s,self.index
-				cardidate_state.append(s)
-
-		return cardidate_state
-
-	def check_condition(self,cardidate_state,right_cond,rule_index):
-		is_ambiguous = 0
-		next_state = None
-		next_cond = None
-		for c in cardidate_state:
-			#Condition.compatible(a,b)
-			a = right_cond[rule_index]
-			b = Condition(c.start,self.index,"==")
-			cond_ = Condition.compatible( a ,b)
-
-			if cond_:
-				is_ambiguous += 1
-				next_state = c
-				next_cond = cond_
-		return is_ambiguous,next_state,next_cond
-
-	def recur(self,state,left_cond):
-
-		rule = state.rule.ele
-		rule_index = len(rule.right)-1
-
-		right_cond = left_cond.make_condition(rule)
-
-		tree = AST(rule.left,rule)
-
-		while rule_index >= 0 :
-			child = None
-			if self.grammar.isTerminal(rule.right[rule_index]):
-				if self.debug:
-					print "terminal " ,rule.right[rule_index], self.charts[self.index-1].token.value
-				#child = AST(rule.right[rule_index])
-				token = self.charts[self.index-1].token
-				child = [AST(token.type,token)]
-
-				self.index -=1
-				tree.children.insert(0,child[0])
-				rule_index -=1
-
-			else:
-				cardidate_state = self.find_cadidate(rule,rule_index)
-				is_ambiguous,next_state,next_cond = self.check_condition(cardidate_state,right_cond,rule_index)
-
-				if is_ambiguous == 1:
-					if self.debug:
-						print "recur ",next_state,self.index, " with condition > [",next_cond,"]"
-					child = self.recur(next_state,next_cond)
-					if self.debug:
-						print "end recur"
-					tree.children.insert(0,child[0])
-					rule_index -=1
+		# print a.ele # left production
+		# print a.ref # production
+		# print a.children # [ AST obj]
+	
+	def recur(self):
+		pass
+		s = self.seq[self.index]	
+		print s,
+		if s.rule.isType("pro"):
+			print "production"
+			children = []
+			target = self.seq[self.index]
+			while target.rule.dot != 0:
+				if self.grammar.isTerminal(target.prev):
+					self.index +=1
+					node = AST(target.prev)
+					#set reference to terminal 
 				else:
-					raise Exception("ambiguous")
+					self.index +=1
+					print "\n\nbefore",target
+					node = self.recur()
+					self.index+=1
+					print "after",target,"\n\n"
 
-					
-					
-		return [tree]
+				children.append(node)
+				target = self.seq[self.index]
+				print "next ",target,target.rule.type
 
-		
+			print s.rule.ele ," wooooo"
+			self.index +=1
+			return children, s.rule
+		else:
+			print "terminal"
+			if s.rule.isType("end"):
+				ast = AST(s.rule.ele)
+
+				self.index += 1
+				children,ref = self.recur()
+				ast.set_children(children)
+				ast.set_reference(ref)
+				return ast
+			else:
+				print s.rule.type
+				raise Exception("start")
+				

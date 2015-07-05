@@ -1,17 +1,11 @@
 from noom.ContextFree import ContextFree
 from Track import Track
 class State:
-	def __init__(self,rule,start,track):
+	def __init__(self,rule,start):
 		self.rule = rule
 		self.start = start
 		self.next = self.rule.next()
 		self.prev = self.rule.prev()
-		self.track = None
-		self.set_parent(track)
-		
-	
-	def set_parent(self,track):
-		self.track = Track(track,self)
 		
 	def is_predictor(self):
 		return not( self.is_scanner() or self.is_completer() )
@@ -40,6 +34,7 @@ class Chart:
 		self.debug = debug
 		self.token = token
 		self.queue = []
+		self.call = {}
 
 	def __str__(self):
 		s = " ========= "+str(self.index)+" ========== \n"
@@ -52,6 +47,16 @@ class Chart:
 			return None
 		return self.queue.pop(0)
 
+	def add_call(self,state):
+		if state.next in self.call:
+			self.call[state.next].append( state )
+		else:
+			self.call[state.next] = [state] 
+	def get_call(self,key):
+		if key in self.call:
+			return self.call[key]
+		else:
+			return []
 
 	def add_state(self, state):
 		len_prev = len(self.states)

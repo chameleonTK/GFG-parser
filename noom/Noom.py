@@ -5,7 +5,7 @@ import argparse
 from ContextFree import ContextFree
 
 import Keshav.Recognizer
-import Keshav.Parser
+import Keshav.exParser
 import Earley.Recognizer
 import CYK.Recognizer
 import sys
@@ -23,7 +23,7 @@ class Noom:
 		if mode == "Keshav":
 			GFG = self.grammar.toGFG()
 			self.recg = Keshav.Recognizer.Recognizer(GFG,False)
-			self.pars = Keshav.Parser.Parser(GFG,False)
+			self.pars = Keshav.exParser.exParser(GFG,False)
 
 		elif mode == "Earley":
 			self.recg = Earley.Recognizer.Recognizer(self.grammar,False)
@@ -46,8 +46,9 @@ class Noom:
 
 	def run(self,code):
 		token = self.tokenize(code)
-		charts = self.recognize(token)
-		self.AST = self.parse(charts)
+		(charts,fin) = self.recognize(token)
+		self.AST = self.parse( (charts,fin) )
+
 		return self.pars.semantic(self.AST)
 
 	def benchmark(self,code):

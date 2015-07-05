@@ -13,7 +13,7 @@ class State:
 	def is_complete(self):
 		return self.dot==len(self.rule.right)
 
-	def is_scaner(self):
+	def is_scanner(self):
 		return  ContextFree.isTerminal(self.next())
 
 
@@ -36,14 +36,17 @@ class State:
 		return -1
 
 	def __str__(self):
-		return str(self.rule)+"["+str(self.start)+"] "+"["+str(self.dot)+"]"
+		return str(self.rule)+"["+str(self.dot)+"] "+"["+str(self.start)+"]"
 
+	def __hash__(self):
+		return hash(str(self))
 
 class Chart:
-	def __init__(self , states,index = 0 , debug = False):
-		self.states = states
+	def __init__(self ,index = 0 , debug = False):
+		self.states = set()
 		self.index = index
 		self.debug = debug
+		self.queue = []
 
 	def __str__(self):
 		s=""
@@ -51,12 +54,21 @@ class Chart:
 			s+= str(self.states[i])+"\n"
 
 		return s
+		
+	def next(self):
+		if len(self.queue) <= 0:
+			return None
+		return self.queue.pop(0)
 
 	def add_state(self, state):
-		if not state in self.states:
-			state.set_end(self.index)
-			self.states.append(state)
-			if self.debug:
-				print "\t",state
-		#else:
-		#	print "BOO",state.start
+		len_prev = len(self.states)
+		self.states.add(state)
+		if len_prev != len(self.states):
+			self.queue.append(state)
+
+		# if not state in self.states:
+		# 	state.set_end(self.index)
+		# 	self.states.append(state)
+		# 	if self.debug:
+		# 		print "\t",state
+		# 

@@ -4,6 +4,12 @@ class AST:
 		self.ref = ref
 		self.children = []
 	
+	def set_children(self,children):
+		self.children = children
+
+	def set_reference(self,ref):
+		self.ref = ref
+
 	def __str__(self):
 		return AST.printAST(self,0)
 

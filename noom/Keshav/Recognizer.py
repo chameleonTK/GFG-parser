@@ -1,12 +1,13 @@
 from GrammarFlow import GrammarFlow
 from Chart import * 
+from profilehooks import profile
 
 class Recognizer():
 	def __init__(self,GFG,debug = False):
 		self.GFG = GFG
-		self.debug = debug
+		self.debug = True
 		self.size = len(self.GFG.node)
-
+		
 	def recognize(self,token):
 		i=0
 		self.init(token)
@@ -47,12 +48,15 @@ class Recognizer():
 		if self.debug:
 			print "Initial"
 
-		s = State(self.GFG.start ,0,None)
+		s = State(self.GFG.start ,0)
 		self.charts[0].add_state(s)
 				
 	def predictor(self,state,j):
 		for node in state.rule.edgeTo:
-			s = State(node,j,state.track)
+			if state.rule.isType("pro"):
+				self.charts[j].add_call(state)
+
+			s = State(node,j)
 			self.charts[j].add_state(s)
 
 	
@@ -62,7 +66,7 @@ class Recognizer():
 
 		if self.GFG.isToken(state.next,self.token[j]):
 			for node in state.rule.edgeTo:
-				s = State(node,state.start,state.track)
+				s = State(node,state.start)
 				self.charts[j+1].add_state(s)
 			
 	
@@ -70,22 +74,20 @@ class Recognizer():
 
 		if state.rule.isType("end"):
 
-			for st in self.charts[state.start].states:
-				if not st.rule.isType("pro"):
-					continue
-				
-				if st.next == state.rule.ele:
-					s = State( st.rule.returnNode,st.start,state.track)
-					self.charts[j].add_state(s)
+			states = self.charts[state.start].get_call(state.rule.ele)
+			for st in states:
 
-					# for node in state.rule.edgeTo:
-					# 	if node.ele == st.rule.ele and node.dot == st.rule.dot+1 :
-					# 		s = State(node,st.start,state.track)
-					# 		self.charts[j].add_state(s)
+				s = State( st.rule.returnNode,st.start)
+				self.charts[j].add_state(s)
+
+				# for node in state.rule.edgeTo:
+				# 	if node.ele == st.rule.ele and node.dot == st.rule.dot+1 :
+				# 		s = State(node,st.start)
+				# 		self.charts[j].add_state(s)
 				
 		else:
 			for node in state.rule.edgeTo:
-				s = State(node,state.start,state.track)
+				s = State(node,state.start)
 				self.charts[j].add_state(s)
 				if j == len(self.charts)-1 and state.start == 0 and node == self.GFG.final :
 					self.fin = s
